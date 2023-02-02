@@ -59,9 +59,18 @@ async Task move(string direction)
     {
         var moveResult = await response.Content.ReadFromJsonAsync<MoveResponse>();
         Console.WriteLine($"Current row: {moveResult.Row}; Current column: {moveResult.Column}; Target row: {joinResponse.TargetRow}; Target column: {joinResponse.TargetColumn}");
+        Console.WriteLine($"Battery level: {moveResult.BatteryLevel}; Orientation: {moveResult.Orientation}");
         Console.WriteLine(moveResult.Message);
+
+        if (moveResult.Message == "You made it to the target!")
+        {
+            Console.WriteLine();
+            Console.WriteLine("** Congratulations!! **");
+            Environment.Exit(0);
+        }
+
         Console.CursorLeft = 0;
-        Console.CursorTop -= 2;
+        Console.CursorTop -= 3;
     }
 }
 
