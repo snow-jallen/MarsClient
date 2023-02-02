@@ -3,14 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MarsClient.MovePage"
              Title="Move Page">
-    <VerticalStackLayout>
+    <Grid RowDefinitions="*,*,*,Auto,Auto" ColumnDefinitions="*,*,*">
+        <Grid.GestureRecognizers>
+            <SwipeGestureRecognizer Direction="Right"
+                                    Command="{Binding MoveRightCommand}" />
+            <SwipeGestureRecognizer Direction="Left"
+                                    Command="{Binding MoveLeftCommand}" />
+            <SwipeGestureRecognizer Direction="Up"
+                                    Command="{Binding MoveForwardCommand}" />
+            <SwipeGestureRecognizer Direction="Down"
+                                    Command="{Binding MoveReverseCommand}" />
+        </Grid.GestureRecognizers>
+        <Button Text="Forward"
+                Grid.Column="1"
+                Command="{Binding MoveForwardCommand}" />
         <Button Text="Right"
+                Grid.Row="1"
+                Grid.Column="2"
                 Command="{Binding MoveRightCommand}" />
         <Button Text="Left"
+                Grid.Row="1"
                 Command="{Binding MoveLeftCommand}" />
-        <Button Text="Forward"
-                Command="{Binding MoveForwardCommand}" />
         <Button Text="Reverse"
+                Grid.Row="2"
+                Grid.Column="1"
                 Command="{Binding MoveReverseCommand}" />
-    </VerticalStackLayout>
+
+        <Label Text="{Binding Result.message, StringFormat='Message: {0}'}"
+               Grid.Row="3"
+               Grid.ColumnSpan="3" />
+        <VerticalStackLayout Grid.Row="4" Grid.ColumnSpan="3">
+            <Label Text="{Binding Result.row,StringFormat='Your row: {0}'}" />
+            <Label Text="{Binding Result.column,StringFormat='Your col: {0}'}" />
+            <Label Text="{Binding Result.targetRow,StringFormat='Target row: {0}'}" />
+            <Label Text="{Binding Result.targetColumn,StringFormat='Target col: {0}'}" />
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>

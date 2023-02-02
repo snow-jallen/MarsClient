@@ -7,16 +7,19 @@ public static class MauiProgram
 {
 	public static MauiApp CreateMauiApp()
 	{
+		Routing.RegisterRoute("Move", typeof(MovePage));
+		Routing.RegisterRoute("Waiting", typeof(WaitingPage));
+
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-            .UseMauiCommunityToolkit()
-            .ConfigureFonts(fonts =>
+			.UseMauiCommunityToolkit()
+			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
-		
+
 		builder.Services.AddSingleton<MainViewModel>();
 		builder.Services.AddSingleton<MainPage>();
 
@@ -24,6 +27,9 @@ public static class MauiProgram
 		builder.Services.AddSingleton<MoveViewModel>();
 
 		builder.Services.AddSingleton<INetService, MauiNetService>();
+		builder.Services.AddSingleton<INavService, MauiNavService>();
+
+		builder.Services.AddSingleton<WaitingPage>();
 
 #if DEBUG
 		builder.Logging.AddDebug();
