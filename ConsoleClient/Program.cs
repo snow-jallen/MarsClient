@@ -25,12 +25,16 @@ if (!r.IsSuccessStatusCode)
 }
 var joinResponse = await r.Content.ReadFromJsonAsync<JoinResponse>();
 
+//hang on to these for later
+int ingenuityRow = joinResponse.StartingRow;
+int ingenuityCol = joinResponse.StartingColumn;
+
 await waitForGameToStartPlaying();
 
 Console.WriteLine("Game on!  Start pressing arrow keys to turn right, turn left, go forward, or go backward.");
 while (true)
 {
-    var key = Console.ReadKey();
+    var key = Console.ReadKey(intercept: true);
     switch (key.Key)
     {
         case ConsoleKey.UpArrow:
@@ -45,12 +49,35 @@ while (true)
         case ConsoleKey.DownArrow:
             await move("Reverse");
             break;
+        case ConsoleKey.W:
+            await moveHelicopter(ingenuityRow, ingenuityCol + 2);
+            break;
+        case ConsoleKey.D:
+            await moveHelicopter(ingenuityRow + 2, ingenuityCol);
+            break;
+        case ConsoleKey.S:
+            await moveHelicopter(ingenuityRow, ingenuityCol - 2);
+            break;
+        case ConsoleKey.A:
+            await moveHelicopter(ingenuityRow - 2, ingenuityCol);
+            break;
     }
 }
 
-
-
 //################################################################################################################
+
+async Task moveHelicopter(int row, int col)
+{
+    var response = await httpClient.GetAsync($"/game/moveingenuity?token={joinResponse.Token}&destinationRow={row}&destinationColumn={col}");
+    if (response.IsSuccessStatusCode)
+    {
+        var moveResponse = await response.Content.ReadFromJsonAsync<IngenuityMoveResponse>();
+        ingenuityRow = moveResponse.Row;
+        ingenuityCol = moveResponse.Column;
+
+        //update your internal high-res map with moveResponse.Neighbors
+    }
+}
 
 async Task move(string direction)
 {
@@ -58,6 +85,15 @@ async Task move(string direction)
     if (response.IsSuccessStatusCode)
     {
         var moveResult = await response.Content.ReadFromJsonAsync<MoveResponse>();
+
+        //clear the output area
+        var blankLine = new string(' ', Console.WindowWidth);
+        Console.WriteLine(blankLine);
+        Console.WriteLine(blankLine);
+        Console.WriteLine(blankLine);
+        Console.CursorTop -= 3;
+
+        //update output
         Console.WriteLine($"Current row: {moveResult.Row}; Current column: {moveResult.Column}; Target row: {joinResponse.TargetRow}; Target column: {joinResponse.TargetColumn}");
         Console.WriteLine($"Battery level: {moveResult.BatteryLevel}; Orientation: {moveResult.Orientation}");
         Console.WriteLine(moveResult.Message);
@@ -93,6 +129,15 @@ public class MoveResponse
     public Neighbor[] Neighbors { get; set; }
     public string Message { get; set; }
     public string Orientation { get; set; }
+}
+
+public class IngenuityMoveResponse
+{
+    public int Row { get; set; }
+    public int Column { get; set; }
+    public int BatteryLevel { get; set; }
+    public IEnumerable<Neighbor> Neighbors { get; set; }
+    public string Message { get; set; }
 }
 
 public class StatusResult
