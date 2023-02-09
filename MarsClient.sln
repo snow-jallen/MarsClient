@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarsClient", "MarsClient\MarsClient.csproj", "{18214675-D954-442F-8624-1A4B497D4A76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient", "ConsoleClient\ConsoleClient.csproj", "{72DDE317-18F2-4D57-863E-B4C351ABB0F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleClient", "ConsoleClient\ConsoleClient.csproj", "{72DDE317-18F2-4D57-863E-B4C351ABB0F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarsClient.Tests", "MarsClient.Tests\MarsClient.Tests.csproj", "{DCCF226F-59FB-4D9D-858E-8D466CC01A9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{72DDE317-18F2-4D57-863E-B4C351ABB0F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72DDE317-18F2-4D57-863E-B4C351ABB0F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72DDE317-18F2-4D57-863E-B4C351ABB0F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCCF226F-59FB-4D9D-858E-8D466CC01A9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCCF226F-59FB-4D9D-858E-8D466CC01A9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCCF226F-59FB-4D9D-858E-8D466CC01A9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCCF226F-59FB-4D9D-858E-8D466CC01A9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
