@@ -5,6 +5,7 @@ namespace MarsClient;
 
 public interface INetService
 {
+    Task<bool> AlreadyJoinedActiveGame();
     Task JoinGameAsync(string gameId, string playerName);
     Task<MoveResponse> MoveAsync(string direction);
     Task<bool> SeeIfGameHasStarted();
@@ -34,6 +35,9 @@ public class MauiNetService : INetService
             token = joinReesponse.Token;
             targetRow = joinReesponse.TargetRow;
             targetColumn = joinReesponse.TargetColumn;
+            Preferences.Set("token", token);
+            Preferences.Set("targetRow", joinReesponse.TargetRow);
+            Preferences.Set("targetColumn", joinReesponse.TargetColumn);
 
             mapService.Map = new Models.Map(joinReesponse.LowResolutionMap);
         }
@@ -85,6 +89,25 @@ public class MauiNetService : INetService
         }
         catch
         {
+            return false;
+        }
+    }
+
+    public async Task<bool> AlreadyJoinedActiveGame()
+    {
+        token = Preferences.Get("token", null);
+        if (token != null && await SeeIfGameHasStarted())
+        {
+            targetColumn = Preferences.Get("targetColumn", 0);
+            targetRow = Preferences.Get("targetRow", 0);
+            if (targetRow == 0 || targetColumn == 0)
+                throw new Exception("I'm part of an active game but I don't know the target?");
+
+            return true;
+        }
+        else
+        {
+            token = null;
             return false;
         }
     }

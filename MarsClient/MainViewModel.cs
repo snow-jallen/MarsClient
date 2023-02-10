@@ -20,6 +20,15 @@ public partial class MainViewModel : ObservableObject
     private readonly INetService netService;
     private readonly INavService navService;
 
+    [RelayCommand]
+    private async Task Loaded()
+    {
+        //if (await netService.AlreadyJoinedActiveGame())
+        //{
+        //    await navService.GoToAsync("/Move");
+        //}
+    }
+
     [RelayCommand(CanExecute = nameof(CanJoinGame))]
     private async Task JoinGame()
     {
