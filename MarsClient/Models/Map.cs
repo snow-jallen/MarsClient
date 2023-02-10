@@ -4,25 +4,19 @@ public class Map
 {
     private Map(IEnumerable<Cell> cells)
     {
-        Cells = new(cells.Select(c => new KeyValuePair<(int, int), Cell>((c.Row, c.Col), c)));
+        Cells = new(cells.Select(c => new KeyValuePair<(int, int), Cell>((c.X, c.Y), c)));
     }
 
     public Map(IEnumerable<LowResolutionMapTile> lowResMapTiles)
     {
-        //Cells = new(from tile in lowResMapTiles
-        //            let tileA = tile
-        //            from row in Enumerable.Range(tile.LowerLeftRow, tile.UpperRightRow + 1)
-        //            from col in Enumerable.Range(tile.LowerLeftColumn, tile.UpperRightColumn + 1)
-        //            select new KeyValuePair<(int, int), Cell>((row, col), new Cell(row, col, tile.AverageDifficulty)));
-
         cells = new();
         foreach (var tile in lowResMapTiles)
         {
-            for (int row = tile.LowerLeftRow; row <= tile.UpperRightRow; row++)
+            for (int x = tile.LowerLeftX; x <= tile.UpperRightX; x++)
             {
-                for (int col = tile.LowerLeftColumn; col <= tile.UpperRightColumn; col++)
+                for (int y = tile.LowerLeftY; y <= tile.UpperRightY; y++)
                 {
-                    cells.Add((row, col), new Cell(row, col, tile.AverageDifficulty));
+                    cells.Add((x, y), new Cell(x, y, tile.AverageDifficulty));
                 }
             }
         }
@@ -40,18 +34,18 @@ public class Map
         init
         {
             cells = value;
-            Height = cells.Max(c => c.Value.Col);
-            Width = cells.Max(c => c.Value.Row);
+            Height = cells.Max(c => c.Value.Y);
+            Width = cells.Max(c => c.Value.X);
         }
     }
 
-    public ViewableCells GetCellsInView((int row, int col) location, Orientation orientation)
+    public ViewableCells GetCellsInView((int x, int y) location, Orientation orientation)
     {
-        (int r, int c) offset(int deltaRow, int deltaCol) => (location.row + deltaRow, location.col + deltaCol);
+        (int r, int c) offset(int deltaX, int deltaY) => (location.x + deltaX, location.y + deltaY);
 
-        Cell getCell(int deltaCol, int deltaRow)
+        Cell getCell(int deltaX, int deltaY)
         {
-            var location = offset(deltaRow, deltaCol);
+            var location = offset(deltaX, deltaY);
             if (Cells.ContainsKey(location))
             {
                 return Cells[location];
@@ -59,7 +53,7 @@ public class Map
             return null;
         }
 
-        return orientation switch
+        var viewable = orientation switch
         {
             Orientation.North => new ViewableCells
             {
@@ -68,11 +62,13 @@ public class Map
                 UU = getCell(0, 2),
                 RUU = getCell(1, 2),
                 RRUU = getCell(2, 2),
+
                 LLU = getCell(-2, 1),
                 LU = getCell(-1, 1),
                 U = getCell(0, 1),
                 RU = getCell(1, 1),
                 RRU = getCell(2, 1),
+
                 LL = getCell(-2, 0),
                 L = getCell(-1, 0),
                 Me = getCell(0, 0),
@@ -86,11 +82,13 @@ public class Map
                 UU = getCell(2, 0),
                 RUU = getCell(2, -1),
                 RRUU = getCell(2, -2),
+
                 LLU = getCell(1, 2),
                 LU = getCell(1, 1),
                 U = getCell(1, 0),
                 RU = getCell(1, -1),
                 RRU = getCell(1, -2),
+
                 LL = getCell(0, 2),
                 L = getCell(0, 1),
                 Me = getCell(0, 0),
@@ -104,11 +102,13 @@ public class Map
                 UU = getCell(0, -2),
                 RUU = getCell(-1, -2),
                 RRUU = getCell(-2, -2),
+
                 LLU = getCell(2, -1),
                 LU = getCell(1, -1),
                 U = getCell(0, -1),
                 RU = getCell(-1, -1),
                 RRU = getCell(-2, -1),
+
                 LL = getCell(2, 0),
                 L = getCell(1, 0),
                 Me = getCell(0, 0),
@@ -122,11 +122,13 @@ public class Map
                 UU = getCell(-2, 0),
                 RUU = getCell(-2, 1),
                 RRUU = getCell(-2, 2),
+
                 LLU = getCell(-1, -2),
                 LU = getCell(-1, -1),
                 U = getCell(-1, 0),
                 RU = getCell(-1, 1),
                 RRU = getCell(-1, 2),
+
                 LL = getCell(0, -2),
                 L = getCell(0, -1),
                 Me = getCell(0, 0),
@@ -134,6 +136,7 @@ public class Map
                 RR = getCell(0, 2),
             }
         };
+        return viewable;
     }
 
     public static Map CreateFromCells(IEnumerable<Cell> cells) => new Map(cells);

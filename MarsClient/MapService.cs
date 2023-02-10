@@ -13,10 +13,10 @@ public class MapService
     {
         foreach (var neighbor in neighbors)
         {
-            if (Map.Cells[(neighbor.Row, neighbor.Column)].IsExplored == false)
+            if (Map.Cells[(neighbor.X, neighbor.Y)].IsExplored == false)
             {
-                Map.Cells[(neighbor.Row, neighbor.Column)].Difficulty = neighbor.Difficulty;
-                Map.Cells[(neighbor.Row, neighbor.Column)].IsExplored = true;
+                Map.Cells[(neighbor.X, neighbor.Y)].Difficulty = neighbor.Difficulty;
+                Map.Cells[(neighbor.X, neighbor.Y)].IsExplored = true;
             }
         }
     }

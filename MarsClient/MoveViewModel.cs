@@ -26,15 +26,15 @@ public partial class MoveViewModel : ObservableObject
     {
         Result = await netService.MoveAsync(direction);
         var statedOrientation = (int)Enum.Parse<Orientation>(result.orientation);
-        //statedOrientation = (statedOrientation + 5) % 4;
-        for (int i = 0; i < 1; i++)
-        {
-            statedOrientation++;
-            if (statedOrientation >= Enum.GetValues<Orientation>().Length)
-            {
-                statedOrientation = 0;
-            }
-        }
-        ViewableCells = mapService.Map.GetCellsInView((Result.row, Result.column), (Orientation)statedOrientation);
+        ////statedOrientation = (statedOrientation + 5) % 4;
+        //for (int i = 0; i < 3; i++)
+        //{
+        //    statedOrientation++;
+        //    if (statedOrientation >= Enum.GetValues<Orientation>().Length)
+        //    {
+        //        statedOrientation = 0;
+        //    }
+        //}
+        ViewableCells = mapService.Map.GetCellsInView((Result.x, Result.y), (Orientation)statedOrientation);
     }
 }

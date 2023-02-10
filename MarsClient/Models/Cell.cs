@@ -1,15 +1,15 @@
 ﻿namespace MarsClient.Models;
 public class Cell : IEquatable<Cell>
 {
-    public Cell(int row, int col, int diff, bool isExplored = false)
+    public Cell(int x, int y, int diff, bool isExplored = false)
     {
-        Row = row;
-        Col = col;
+        X = x;
+        Y = y;
         Difficulty = diff;
         IsExplored = isExplored;
     }
-    public int Row { get; }
-    public int Col { get; }
+    public int X { get; }
+    public int Y { get; }
     public Color Color
     {
         get
@@ -37,18 +37,18 @@ public class Cell : IEquatable<Cell>
     public bool Equals(Cell other)
     {
         return other is not null &&
-               Row == other.Row &&
-               Col == other.Col &&
+               X == other.X &&
+               Y == other.Y &&
                Difficulty == other.Difficulty &&
                IsExplored == other.IsExplored;
     }
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(Row, Col, Difficulty, IsExplored);
+        return HashCode.Combine(X, Y, Difficulty, IsExplored);
     }
 
-    public override string ToString() => $"({Row},{Col}) {(IsExplored ? "" : "~")}{Difficulty}";
+    public override string ToString() => $"({X},{Y}) {(IsExplored ? "" : "~")}{Difficulty}";
 
     public static bool operator ==(Cell left, Cell right)
     {

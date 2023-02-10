@@ -26,8 +26,8 @@ if (!r.IsSuccessStatusCode)
 var joinResponse = await r.Content.ReadFromJsonAsync<JoinResponse>();
 
 //hang on to these for later
-int ingenuityRow = joinResponse.StartingRow;
-int ingenuityCol = joinResponse.StartingColumn;
+int ingenuityRow = joinResponse.StartingX;
+int ingenuityCol = joinResponse.StartingY;
 
 await waitForGameToStartPlaying();
 
@@ -72,8 +72,8 @@ async Task moveHelicopter(int row, int col)
     if (response.IsSuccessStatusCode)
     {
         var moveResponse = await response.Content.ReadFromJsonAsync<IngenuityMoveResponse>();
-        ingenuityRow = moveResponse.Row;
-        ingenuityCol = moveResponse.Column;
+        ingenuityRow = moveResponse.X;
+        ingenuityCol = moveResponse.Y;
 
         //update your internal high-res map with moveResponse.Neighbors
     }
@@ -94,7 +94,7 @@ async Task move(string direction)
         Console.CursorTop -= 3;
 
         //update output
-        Console.WriteLine($"Current row: {moveResult.Row}; Current column: {moveResult.Column}; Target row: {joinResponse.TargetRow}; Target column: {joinResponse.TargetColumn}");
+        Console.WriteLine($"Current row: {moveResult.Row}; Current column: {moveResult.Column}; Target row: {joinResponse.TargetX}; Target column: {joinResponse.TargetY}");
         Console.WriteLine($"Battery level: {moveResult.BatteryLevel}; Orientation: {moveResult.Orientation}");
         Console.WriteLine(moveResult.Message);
 
@@ -133,8 +133,8 @@ public class MoveResponse
 
 public class IngenuityMoveResponse
 {
-    public int Row { get; set; }
-    public int Column { get; set; }
+    public int X { get; set; }
+    public int Y { get; set; }
     public int BatteryLevel { get; set; }
     public IEnumerable<Neighbor> Neighbors { get; set; }
     public string Message { get; set; }
@@ -148,10 +148,10 @@ public class StatusResult
 public class JoinResponse
 {
     public string Token { get; set; }
-    public int StartingRow { get; set; }
-    public int StartingColumn { get; set; }
-    public int TargetRow { get; set; }
-    public int TargetColumn { get; set; }
+    public int StartingX { get; set; }
+    public int StartingY { get; set; }
+    public int TargetX { get; set; }
+    public int TargetY { get; set; }
     public Neighbor[] Neighbors { get; set; }
     public Lowresolutionmap[] LowResolutionMap { get; set; }
     public string Orientation { get; set; }
@@ -159,16 +159,16 @@ public class JoinResponse
 
 public class Neighbor
 {
-    public int Row { get; set; }
-    public int Column { get; set; }
+    public int X { get; set; }
+    public int Y { get; set; }
     public int Difficulty { get; set; }
 }
 
 public class Lowresolutionmap
 {
-    public int LowerLeftRow { get; set; }
-    public int LowerLeftColumn { get; set; }
-    public int UpperRightRow { get; set; }
-    public int UpperRightColumn { get; set; }
+    public int LowerLeftX { get; set; }
+    public int LowerLeftY { get; set; }
+    public int UpperRightX { get; set; }
+    public int UpperRightY { get; set; }
     public int AverageDifficulty { get; set; }
 }

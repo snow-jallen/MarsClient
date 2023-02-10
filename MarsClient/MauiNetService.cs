@@ -15,16 +15,16 @@ public class MauiNetService : INetService
 {
     public MauiNetService(MapService mapService)
     {
-        client.BaseAddress = new Uri("https://snow-rover.azurewebsites.net");
-        //client.BaseAddress = new Uri("https://localhost:7287");
+        //client.BaseAddress = new Uri("https://snow-rover.azurewebsites.net");
+        client.BaseAddress = new Uri("https://localhost:7287");
         this.mapService = mapService;
     }
 
     private string token;
     private HttpClient client = new HttpClient();
     private bool gameHasStarted = false;
-    private int targetColumn;
-    private int targetRow;
+    private int targetY;
+    private int targetX;
     private readonly MapService mapService;
 
     public async Task JoinGameAsync(string gameId, string playerName)
@@ -33,11 +33,11 @@ public class MauiNetService : INetService
         {
             var joinReesponse = await client.GetFromJsonAsync<JoinResponse>($"/game/join?gameId={gameId}&name={playerName}");
             token = joinReesponse.Token;
-            targetRow = joinReesponse.TargetRow;
-            targetColumn = joinReesponse.TargetColumn;
+            targetX = joinReesponse.TargetX;
+            targetY = joinReesponse.TargetY;
             Preferences.Set("token", token);
-            Preferences.Set("targetRow", joinReesponse.TargetRow);
-            Preferences.Set("targetColumn", joinReesponse.TargetColumn);
+            Preferences.Set("targetX", joinReesponse.TargetX);
+            Preferences.Set("targetY", joinReesponse.TargetY);
 
             mapService.Map = new Models.Map(joinReesponse.LowResolutionMap);
         }
@@ -58,8 +58,8 @@ public class MauiNetService : INetService
         if (moveResponse.IsSuccessStatusCode)
         {
             var mr = await moveResponse.Content.ReadFromJsonAsync<MoveResponse>();
-            mr.targetColumn = targetColumn;
-            mr.targetRow = targetRow;
+            mr.targetY = targetY;
+            mr.targetX = targetX;
             mapService.UpdateMap(mr.neighbors);
             return mr;
         }
@@ -98,9 +98,9 @@ public class MauiNetService : INetService
         token = Preferences.Get("token", null);
         if (token != null && await SeeIfGameHasStarted())
         {
-            targetColumn = Preferences.Get("targetColumn", 0);
-            targetRow = Preferences.Get("targetRow", 0);
-            if (targetRow == 0 || targetColumn == 0)
+            targetY = Preferences.Get("targetY", 0);
+            targetX = Preferences.Get("targetX", 0);
+            if (targetX == 0 || targetY == 0)
                 throw new Exception("I'm part of an active game but I don't know the target?");
 
             return true;
@@ -115,10 +115,10 @@ public class MauiNetService : INetService
 
 public class MoveResponse
 {
-    public int row { get; set; }
-    public int column { get; set; }
-    public int targetRow { get; set; }
-    public int targetColumn { get; set; }
+    public int x { get; set; }
+    public int y { get; set; }
+    public int targetX { get; set; }
+    public int targetY { get; set; }
     public int batteryLevel { get; set; }
     public Neighbor[] neighbors { get; set; }
     public string message { get; set; }

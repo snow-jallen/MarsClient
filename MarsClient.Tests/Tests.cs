@@ -43,10 +43,10 @@ public class Tests
         List<LowResolutionMapTile> lowResolutionMapTiles = new List<LowResolutionMapTile>();
         lowResolutionMapTiles.Add(new LowResolutionMapTile
         {
-            LowerLeftRow = 0,
-            LowerLeftColumn = 0,
-            UpperRightRow = 9,
-            UpperRightColumn = 9,
+            LowerLeftX = 0,
+            LowerLeftY = 0,
+            UpperRightX = 9,
+            UpperRightY = 9,
             AverageDifficulty = 15
         });
         var map = new Map(lowResolutionMapTiles);

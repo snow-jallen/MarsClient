@@ -33,66 +33,66 @@
             </Grid.Resources>
             <Label Grid.Row="0"
                    Grid.Column="0"
-                   BackgroundColor="{Binding RRUU.Color}"
-                   Text="{Binding RRUU, TargetNullValue='x'}" />
+                   BackgroundColor="{Binding LLUU.Color}"
+                   Text="{Binding LLUU, TargetNullValue='x'}" />
             <Label Grid.Row="0"
                    Grid.Column="1"
-                   BackgroundColor="{Binding RUU.Color}"
-                   Text="{Binding RUU, TargetNullValue='x'}" />
+                   BackgroundColor="{Binding LUU.Color}"
+                   Text="{Binding LUU, TargetNullValue='x'}" />
             <Label Grid.Row="0"
                    Grid.Column="2"
                    BackgroundColor="{Binding UU.Color}"
                    Text="{Binding UU, TargetNullValue='x'}" />
             <Label Grid.Row="0"
                    Grid.Column="3"
-                   BackgroundColor="{Binding LUU.Color}"
-                   Text="{Binding LUU, TargetNullValue='x'}" />
+                   BackgroundColor="{Binding RUU.Color}"
+                   Text="{Binding RUU, TargetNullValue='x'}" />
             <Label Grid.Row="0"
                    Grid.Column="4"
-                   BackgroundColor="{Binding LLUU.Color}"
-                   Text="{Binding LLUU, TargetNullValue='x'}" />
+                   BackgroundColor="{Binding RRUU.Color}"
+                   Text="{Binding RRUU, TargetNullValue='x'}" />
 
             <Label Grid.Row="1"
                    Grid.Column="0"
-                   BackgroundColor="{Binding RRU.Color}"
-                   Text="{Binding RRU, TargetNullValue='x'}" />
+                   BackgroundColor="{Binding LLU.Color}"
+                   Text="{Binding LLU, TargetNullValue='x'}" />
             <Label Grid.Row="1"
                    Grid.Column="1"
-                   BackgroundColor="{Binding RU.Color}"
-                   Text="{Binding RU, TargetNullValue='x'}" />
+                   BackgroundColor="{Binding LU.Color}"
+                   Text="{Binding LU, TargetNullValue='x'}" />
             <Label Grid.Row="1"
                    Grid.Column="2"
                    BackgroundColor="{Binding U.Color}"
                    Text="{Binding U, TargetNullValue='x'}" />
             <Label Grid.Row="1"
                    Grid.Column="3"
-                   BackgroundColor="{Binding LU.Color}"
-                   Text="{Binding LU, TargetNullValue='x'}" />
+                   BackgroundColor="{Binding RU.Color}"
+                   Text="{Binding RU, TargetNullValue='x'}" />
             <Label Grid.Row="1"
                    Grid.Column="4"
-                   BackgroundColor="{Binding LLU.Color}"
-                   Text="{Binding LLU, TargetNullValue='x'}" />
+                   BackgroundColor="{Binding RRU.Color}"
+                   Text="{Binding RRU, TargetNullValue='x'}" />
 
             <Label Grid.Row="2"
                    Grid.Column="0"
-                   BackgroundColor="{Binding RR.Color}"
-                   Text="{Binding RR, TargetNullValue='x'}" />
+                   BackgroundColor="{Binding LL.Color}"
+                   Text="{Binding LL, TargetNullValue='x'}" />
             <Label Grid.Row="2"
                    Grid.Column="1"
-                   BackgroundColor="{Binding R.Color}"
-                   Text="{Binding R, TargetNullValue='x'}" />
+                   BackgroundColor="{Binding L.Color}"
+                   Text="{Binding L, TargetNullValue='x'}" />
             <Label Grid.Row="2"
                    Grid.Column="2"
                    BackgroundColor="{Binding Me.Color}"
                    Text="{Binding Me, TargetNullValue='x'}" />
             <Label Grid.Row="2"
                    Grid.Column="3"
-                   BackgroundColor="{Binding L.Color}"
-                   Text="{Binding L, TargetNullValue='x'}" />
+                   BackgroundColor="{Binding R.Color}"
+                   Text="{Binding R, TargetNullValue='x'}" />
             <Label Grid.Row="2"
                    Grid.Column="4"
-                   BackgroundColor="{Binding LL.Color}"
-                   Text="{Binding LL, TargetNullValue='x'}" />
+                   BackgroundColor="{Binding RR.Color}"
+                   Text="{Binding RR, TargetNullValue='x'}" />
         </Grid>
         <Button Text="Forward"
                 Grid.Column="1"
@@ -119,10 +119,10 @@
                Grid.ColumnSpan="3" />
         <VerticalStackLayout Grid.Row="5"
                              Grid.ColumnSpan="3">
-            <Label Text="{Binding Result.row,StringFormat='Your row: {0}'}" />
-            <Label Text="{Binding Result.column,StringFormat='Your col: {0}'}" />
-            <Label Text="{Binding Result.targetRow,StringFormat='Target row: {0}'}" />
-            <Label Text="{Binding Result.targetColumn,StringFormat='Target col: {0}'}" />
+            <Label Text="{Binding Result.x,StringFormat='Your row: {0}'}" />
+            <Label Text="{Binding Result.y,StringFormat='Your col: {0}'}" />
+            <Label Text="{Binding Result.targetX,StringFormat='Target row: {0}'}" />
+            <Label Text="{Binding Result.targetY,StringFormat='Target col: {0}'}" />
             <Label Text="{Binding Result.orientation, StringFormat='Orientation: {0}'}" />
         </VerticalStackLayout>
     </Grid>
