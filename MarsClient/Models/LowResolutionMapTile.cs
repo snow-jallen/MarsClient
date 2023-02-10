@@ -9,5 +9,5 @@ public class LowResolutionMapTile
     public int UpperRightColumn { get; set; }
 
     public int AverageDifficulty { get; set; }
-
+    public override string ToString() => $"({LowerLeftRow},{LowerLeftColumn}) to ({UpperRightRow},{UpperRightColumn}): {AverageDifficulty}";
 }

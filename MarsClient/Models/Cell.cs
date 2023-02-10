@@ -10,7 +10,22 @@ public class Cell : IEquatable<Cell>
     }
     public int Row { get; }
     public int Col { get; }
+    public Color Color
+    {
+        get
+        {
+            float ratio = (float)Difficulty / 300;
 
+            if (ratio < 0.5f)
+            {
+                return Color.FromRgb(ratio * 2, 1, 0);
+            }
+            else
+            {
+                return Color.FromRgb(1, (1 - ratio) * 2, 0);
+            }
+        }
+    }
     public int Difficulty { get; set; }
     public bool IsExplored { get; set; }
 

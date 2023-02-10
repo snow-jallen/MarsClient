@@ -3,40 +3,119 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MarsClient.MovePage"
              Title="Move Page">
-    <Grid RowDefinitions="*,*,*,Auto,Auto" ColumnDefinitions="*,*,*">
+    <Grid RowDefinitions="3*,*,*,*,Auto,Auto"
+          ColumnDefinitions="*,*,*">
         <Grid.GestureRecognizers>
             <SwipeGestureRecognizer Direction="Right"
-                                    Command="{Binding MoveRightCommand}" />
+                                    Command="{Binding MoveCommand}"
+                                    CommandParameter="Right" />
             <SwipeGestureRecognizer Direction="Left"
-                                    Command="{Binding MoveLeftCommand}" />
+                                    Command="{Binding MoveCommand}"
+                                    CommandParameter="Left" />
             <SwipeGestureRecognizer Direction="Up"
-                                    Command="{Binding MoveForwardCommand}" />
+                                    Command="{Binding MoveCommand}"
+                                    CommandParameter="Forward" />
             <SwipeGestureRecognizer Direction="Down"
-                                    Command="{Binding MoveReverseCommand}" />
+                                    Command="{Binding MoveCommand}"
+                                    CommandParameter="Reverse" />
         </Grid.GestureRecognizers>
+        <Grid Grid.ColumnSpan="3"
+              RowDefinitions="*,*,*"
+              ColumnDefinitions="*,*,*,*,*"
+              BindingContext="{Binding ViewableCells}">
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   BackgroundColor="{Binding LLUU.Color}"
+                   Text="{Binding LLUU, TargetNullValue='x'}" />
+            <Label Grid.Row="0"
+                   Grid.Column="1"
+                   BackgroundColor="{Binding LUU.Color}"
+                   Text="{Binding LUU, TargetNullValue='x'}" />
+            <Label Grid.Row="0"
+                   Grid.Column="2"
+                   BackgroundColor="{Binding UU.Color}"
+                   Text="{Binding UU, TargetNullValue='x'}" />
+            <Label Grid.Row="0"
+                   Grid.Column="3"
+                   BackgroundColor="{Binding RUU.Color}"
+                   Text="{Binding RUU, TargetNullValue='x'}" />
+            <Label Grid.Row="0"
+                   Grid.Column="4"
+                   BackgroundColor="{Binding RRUU.Color}"
+                   Text="{Binding RRUU, TargetNullValue='x'}" />
+
+            <Label Grid.Row="1"
+                   Grid.Column="0"
+                   BackgroundColor="{Binding LLU.Color}"
+                   Text="{Binding LLU, TargetNullValue='x'}" />
+            <Label Grid.Row="1"
+                   Grid.Column="1"
+                   BackgroundColor="{Binding LU.Color}"
+                   Text="{Binding LU, TargetNullValue='x'}" />
+            <Label Grid.Row="1"
+                   Grid.Column="2"
+                   BackgroundColor="{Binding U.Color}"
+                   Text="{Binding U, TargetNullValue='x'}" />
+            <Label Grid.Row="1"
+                   Grid.Column="3"
+                   BackgroundColor="{Binding RU.Color}"
+                   Text="{Binding RU, TargetNullValue='x'}" />
+            <Label Grid.Row="1"
+                   Grid.Column="4"
+                   BackgroundColor="{Binding RRU.Color}"
+                   Text="{Binding RRU, TargetNullValue='x'}" />
+
+            <Label Grid.Row="2"
+                   Grid.Column="0"
+                   BackgroundColor="{Binding LL.Color}"
+                   Text="{Binding LL, TargetNullValue='x'}" />
+            <Label Grid.Row="2"
+                   Grid.Column="1"
+                   BackgroundColor="{Binding L.Color}"
+                   Text="{Binding L, TargetNullValue='x'}" />
+            <Label Grid.Row="2"
+                   Grid.Column="2"
+                   BackgroundColor="{Binding Me.Color}"
+                   Text="{Binding Me, TargetNullValue='x'}" />
+            <Label Grid.Row="2"
+                   Grid.Column="3"
+                   BackgroundColor="{Binding R.Color}"
+                   Text="{Binding R, TargetNullValue='x'}" />
+            <Label Grid.Row="2"
+                   Grid.Column="4"
+                   BackgroundColor="{Binding RR.Color}"
+                   Text="{Binding RR, TargetNullValue='x'}" />
+        </Grid>
         <Button Text="Forward"
                 Grid.Column="1"
-                Command="{Binding MoveForwardCommand}" />
+                Grid.Row="1"
+                Command="{Binding MoveCommand}"
+                CommandParameter="Forward" />
         <Button Text="Right"
-                Grid.Row="1"
-                Grid.Column="2"
-                Command="{Binding MoveRightCommand}" />
-        <Button Text="Left"
-                Grid.Row="1"
-                Command="{Binding MoveLeftCommand}" />
-        <Button Text="Reverse"
                 Grid.Row="2"
+                Grid.Column="2"
+                Command="{Binding MoveCommand}"
+                CommandParameter="Right" />
+        <Button Text="Left"
+                Grid.Row="2"
+                Command="{Binding MoveCommand}"
+                CommandParameter="Left" />
+        <Button Text="Reverse"
+                Grid.Row="3"
                 Grid.Column="1"
-                Command="{Binding MoveReverseCommand}" />
+                Command="{Binding MoveCommand}"
+                CommandParameter="Reverse" />
 
         <Label Text="{Binding Result.message, StringFormat='Message: {0}'}"
-               Grid.Row="3"
+               Grid.Row="4"
                Grid.ColumnSpan="3" />
-        <VerticalStackLayout Grid.Row="4" Grid.ColumnSpan="3">
+        <VerticalStackLayout Grid.Row="5"
+                             Grid.ColumnSpan="3">
             <Label Text="{Binding Result.row,StringFormat='Your row: {0}'}" />
             <Label Text="{Binding Result.column,StringFormat='Your col: {0}'}" />
             <Label Text="{Binding Result.targetRow,StringFormat='Target row: {0}'}" />
             <Label Text="{Binding Result.targetColumn,StringFormat='Target col: {0}'}" />
+            <Label Text="{Binding Result.orientation, StringFormat='Orientation: {0}'}" />
         </VerticalStackLayout>
     </Grid>
 </ContentPage>

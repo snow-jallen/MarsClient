@@ -1,44 +1,32 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MarsClient.Models;
 
 namespace MarsClient;
 
 public partial class MoveViewModel : ObservableObject
 {
+    public MoveViewModel(INetService netService, MapService mapService)
+    {
+        this.netService = netService;
+        this.mapService = mapService;
+    }
+
     private readonly INetService netService;
+    private MapService mapService;
 
     [ObservableProperty]
     private MoveResponse result;
 
-    public MoveViewModel(INetService netService)
-    {
-        this.netService = netService;
-    }
+    [ObservableProperty]
+    private ViewableCells viewableCells;
 
     [RelayCommand]
-    private async Task MoveRight()
+    private async Task Move(string direction)
     {
-        Result = await netService.MoveAsync("Right");
-    }
-
-
-    [RelayCommand]
-    private async Task MoveLeft()
-    {
-        Result = await netService.MoveAsync("Left");
-    }
-
-
-    [RelayCommand]
-    private async Task MoveForward()
-    {
-        Result = await netService.MoveAsync("Forward");
-    }
-
-
-    [RelayCommand]
-    private async Task MoveReverse()
-    {
-        Result = await netService.MoveAsync("Reverse");
+        Result = await netService.MoveAsync(direction);
+        var statedOrientation = (int)Enum.Parse<Orientation>(result.orientation);
+        statedOrientation = (statedOrientation + 5) % 4;
+        ViewableCells = mapService.Map.GetCellsInView((Result.row, Result.column), (Orientation)statedOrientation);
     }
 }

@@ -155,7 +155,7 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 15
- testRunner.When("my ship is at (3,0) facing North", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("my ship is at (0,2) facing North", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "*",
@@ -189,12 +189,12 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Facing North at origin")]
-        public virtual void FacingNorthAtOrigin()
+        [NUnit.Framework.DescriptionAttribute("Facing East in the middle")]
+        public virtual void FacingEastInTheMiddle()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Facing North at origin", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Facing East in the middle", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 22
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -219,7 +219,7 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 23
- testRunner.When("my ship is at (0,0) facing North", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("my ship is at (2,2) facing East", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "*",
@@ -228,22 +228,22 @@ this.FeatureBackground();
                             "*",
                             "*"});
                 table3.AddRow(new string[] {
-                            "null",
-                            "null",
-                            "4",
-                            "10",
-                            "16"});
+                            "26",
+                            "27",
+                            "28",
+                            "29",
+                            "30"});
                 table3.AddRow(new string[] {
-                            "null",
-                            "null",
-                            "5",
-                            "11",
-                            "17"});
+                            "20",
+                            "21",
+                            "22",
+                            "23",
+                            "24"});
                 table3.AddRow(new string[] {
-                            "null",
-                            "null",
-                            "6",
-                            "12",
+                            "14",
+                            "15",
+                            "16",
+                            "17",
                             "18"});
 #line 24
  testRunner.Then("the visible cells are", ((string)(null)), table3, "Then ");
@@ -253,12 +253,12 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Facing East at origin")]
-        public virtual void FacingEastAtOrigin()
+        [NUnit.Framework.DescriptionAttribute("Facing South in the middle")]
+        public virtual void FacingSouthInTheMiddle()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Facing East at origin", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Facing South in the middle", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 30
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -283,7 +283,7 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 31
- testRunner.When("my ship is at (0,0) facing East", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("my ship is at (2,2) facing South", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "*",
@@ -292,23 +292,23 @@ this.FeatureBackground();
                             "*",
                             "*"});
                 table4.AddRow(new string[] {
-                            "16",
-                            "17",
+                            "30",
+                            "24",
                             "18",
-                            "null",
-                            "null"});
-                table4.AddRow(new string[] {
-                            "10",
-                            "11",
                             "12",
-                            "null",
-                            "null"});
+                            "6"});
                 table4.AddRow(new string[] {
-                            "4",
-                            "5",
-                            "6",
-                            "null",
-                            "null"});
+                            "29",
+                            "23",
+                            "17",
+                            "11",
+                            "5"});
+                table4.AddRow(new string[] {
+                            "28",
+                            "22",
+                            "16",
+                            "10",
+                            "4"});
 #line 32
  testRunner.Then("the visible cells are", ((string)(null)), table4, "Then ");
 #line hidden
@@ -317,12 +317,12 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Facing South at origin")]
-        public virtual void FacingSouthAtOrigin()
+        [NUnit.Framework.DescriptionAttribute("Facing West in the middle")]
+        public virtual void FacingWestInTheMiddle()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Facing South at origin", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Facing West in the middle", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 38
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -347,7 +347,7 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 39
- testRunner.When("my ship is at (0,0) facing South", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("my ship is at (2,2) facing West", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "*",
@@ -356,23 +356,23 @@ this.FeatureBackground();
                             "*",
                             "*"});
                 table5.AddRow(new string[] {
-                            "null",
-                            "null",
-                            "null",
-                            "null",
-                            "null"});
+                            "6",
+                            "5",
+                            "4",
+                            "3",
+                            "2"});
                 table5.AddRow(new string[] {
-                            "null",
-                            "null",
-                            "null",
-                            "null",
-                            "null"});
+                            "12",
+                            "11",
+                            "10",
+                            "9",
+                            "8"});
                 table5.AddRow(new string[] {
                             "18",
-                            "12",
-                            "6",
-                            "null",
-                            "null"});
+                            "17",
+                            "16",
+                            "15",
+                            "14"});
 #line 40
  testRunner.Then("the visible cells are", ((string)(null)), table5, "Then ");
 #line hidden
@@ -381,12 +381,12 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Facing West at origin")]
-        public virtual void FacingWestAtOrigin()
+        [NUnit.Framework.DescriptionAttribute("Facing North at origin")]
+        public virtual void FacingNorthAtOrigin()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Facing West at origin", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Facing North at origin", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 46
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -411,7 +411,7 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 47
- testRunner.When("my ship is at (0,0) facing West", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("my ship is at (0,0) facing North", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "*",
@@ -422,23 +422,215 @@ this.FeatureBackground();
                 table6.AddRow(new string[] {
                             "null",
                             "null",
-                            "null",
-                            "null",
-                            "null"});
+                            "4",
+                            "10",
+                            "16"});
                 table6.AddRow(new string[] {
                             "null",
                             "null",
+                            "5",
+                            "11",
+                            "17"});
+                table6.AddRow(new string[] {
+                            "null",
+                            "null",
+                            "6",
+                            "12",
+                            "18"});
+#line 48
+ testRunner.Then("the visible cells are", ((string)(null)), table6, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Facing East at origin")]
+        public virtual void FacingEastAtOrigin()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Facing East at origin", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 54
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+this.FeatureBackground();
+#line hidden
+#line 55
+ testRunner.When("my ship is at (0,0) facing East", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                            "*",
+                            "*",
+                            "*",
+                            "*",
+                            "*"});
+                table7.AddRow(new string[] {
+                            "16",
+                            "17",
+                            "18",
+                            "null",
+                            "null"});
+                table7.AddRow(new string[] {
+                            "10",
+                            "11",
+                            "12",
+                            "null",
+                            "null"});
+                table7.AddRow(new string[] {
+                            "4",
+                            "5",
+                            "6",
+                            "null",
+                            "null"});
+#line 56
+ testRunner.Then("the visible cells are", ((string)(null)), table7, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Facing South at origin")]
+        public virtual void FacingSouthAtOrigin()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Facing South at origin", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 62
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+this.FeatureBackground();
+#line hidden
+#line 63
+ testRunner.When("my ship is at (0,0) facing South", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                            "*",
+                            "*",
+                            "*",
+                            "*",
+                            "*"});
+                table8.AddRow(new string[] {
+                            "null",
+                            "null",
                             "null",
                             "null",
                             "null"});
-                table6.AddRow(new string[] {
+                table8.AddRow(new string[] {
+                            "null",
+                            "null",
+                            "null",
+                            "null",
+                            "null"});
+                table8.AddRow(new string[] {
+                            "18",
+                            "12",
+                            "6",
+                            "null",
+                            "null"});
+#line 64
+ testRunner.Then("the visible cells are", ((string)(null)), table8, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Facing West at origin")]
+        public virtual void FacingWestAtOrigin()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Facing West at origin", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 70
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+this.FeatureBackground();
+#line hidden
+#line 71
+ testRunner.When("my ship is at (0,0) facing West", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                            "*",
+                            "*",
+                            "*",
+                            "*",
+                            "*"});
+                table9.AddRow(new string[] {
+                            "null",
+                            "null",
+                            "null",
+                            "null",
+                            "null"});
+                table9.AddRow(new string[] {
+                            "null",
+                            "null",
+                            "null",
+                            "null",
+                            "null"});
+                table9.AddRow(new string[] {
                             "null",
                             "null",
                             "6",
                             "5",
                             "4"});
-#line 48
- testRunner.Then("the visible cells are", ((string)(null)), table6, "Then ");
+#line 72
+ testRunner.Then("the visible cells are", ((string)(null)), table9, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

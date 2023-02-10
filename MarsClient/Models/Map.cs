@@ -9,10 +9,24 @@ public class Map
 
     public Map(IEnumerable<LowResolutionMapTile> lowResMapTiles)
     {
-        Cells = new(from tile in lowResMapTiles
-                    from row in Enumerable.Range(0, lowResMapTiles.Max(t => t.UpperRightRow) + 1)
-                    from col in Enumerable.Range(0, lowResMapTiles.Max(t => t.UpperRightColumn) + 1)
-                    select new KeyValuePair<(int, int), Cell>((row, col), new Cell(row, col, tile.AverageDifficulty)));
+        //Cells = new(from tile in lowResMapTiles
+        //            let tileA = tile
+        //            from row in Enumerable.Range(tile.LowerLeftRow, tile.UpperRightRow + 1)
+        //            from col in Enumerable.Range(tile.LowerLeftColumn, tile.UpperRightColumn + 1)
+        //            select new KeyValuePair<(int, int), Cell>((row, col), new Cell(row, col, tile.AverageDifficulty)));
+
+        cells = new();
+        foreach (var tile in lowResMapTiles)
+        {
+            for (int row = tile.LowerLeftRow; row <= tile.UpperRightRow; row++)
+            {
+                for (int col = tile.LowerLeftColumn; col <= tile.UpperRightColumn; col++)
+                {
+                    cells.Add((row, col), new Cell(row, col, tile.AverageDifficulty));
+                }
+            }
+        }
+        Cells = cells;
     }
 
     private readonly Dictionary<(int, int), Cell> cells;

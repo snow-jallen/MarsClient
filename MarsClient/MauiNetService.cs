@@ -12,10 +12,11 @@ public interface INetService
 
 public class MauiNetService : INetService
 {
-    public MauiNetService()
+    public MauiNetService(MapService mapService)
     {
-        //client.BaseAddress = new Uri("https://snow-rover.azurewebsites.net");
-        client.BaseAddress = new Uri("https://localhost:7287");
+        client.BaseAddress = new Uri("https://snow-rover.azurewebsites.net");
+        //client.BaseAddress = new Uri("https://localhost:7287");
+        this.mapService = mapService;
     }
 
     private string token;
@@ -23,15 +24,18 @@ public class MauiNetService : INetService
     private bool gameHasStarted = false;
     private int targetColumn;
     private int targetRow;
+    private readonly MapService mapService;
 
     public async Task JoinGameAsync(string gameId, string playerName)
     {
         try
         {
             var joinReesponse = await client.GetFromJsonAsync<JoinResponse>($"/game/join?gameId={gameId}&name={playerName}");
-            token = joinReesponse.token;
-            targetRow = joinReesponse.targetRow;
-            targetColumn = joinReesponse.targetColumn;
+            token = joinReesponse.Token;
+            targetRow = joinReesponse.TargetRow;
+            targetColumn = joinReesponse.TargetColumn;
+
+            mapService.Map = new Models.Map(joinReesponse.LowResolutionMap);
         }
         catch (Exception ex)
         {
@@ -52,6 +56,7 @@ public class MauiNetService : INetService
             var mr = await moveResponse.Content.ReadFromJsonAsync<MoveResponse>();
             mr.targetColumn = targetColumn;
             mr.targetRow = targetRow;
+            mapService.UpdateMap(mr.neighbors);
             return mr;
         }
         else

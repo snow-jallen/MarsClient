@@ -30,6 +30,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<INavService, MauiNavService>();
 
 		builder.Services.AddSingleton<WaitingPage>();
+		builder.Services.AddSingleton<MapService>();
 
 #if DEBUG
 		builder.Logging.AddDebug();
