@@ -15,8 +15,8 @@ public class MauiNetService : INetService
 {
     public MauiNetService(MapService mapService)
     {
-        //client.BaseAddress = new Uri("https://snow-rover.azurewebsites.net");
-        client.BaseAddress = new Uri("https://localhost:7287");
+        client.BaseAddress = new Uri("https://snow-rover.azurewebsites.net");
+        //client.BaseAddress = new Uri("https://localhost:7287");
         this.mapService = mapService;
     }
 

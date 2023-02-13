@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:windows="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;assembly=Microsoft.Maui.Controls"
              x:Class="MarsClient.MovePage"
              Title="Move Page">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Loaded"
+                                        Command="{Binding LoadedCommand}" />
+    </ContentPage.Behaviors>
     <Grid RowDefinitions="3*,*,*,*,Auto,Auto"
           ColumnDefinitions="*,*,*">
         <Grid.GestureRecognizers>
@@ -98,20 +104,24 @@
                 Grid.Column="1"
                 Grid.Row="1"
                 Command="{Binding MoveCommand}"
+                windows:VisualElement.AccessKey="F"
                 CommandParameter="Forward" />
         <Button Text="Right"
                 Grid.Row="2"
                 Grid.Column="2"
                 Command="{Binding MoveCommand}"
+                windows:VisualElement.AccessKey="R"
                 CommandParameter="Right" />
         <Button Text="Left"
                 Grid.Row="2"
                 Command="{Binding MoveCommand}"
+                windows:VisualElement.AccessKey="L"
                 CommandParameter="Left" />
         <Button Text="Reverse"
                 Grid.Row="3"
                 Grid.Column="1"
                 Command="{Binding MoveCommand}"
+                windows:VisualElement.AccessKey="B"
                 CommandParameter="Reverse" />
 
         <Label Text="{Binding Result.message, StringFormat='Message: {0}'}"
