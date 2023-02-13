@@ -25,6 +25,8 @@ if (!r.IsSuccessStatusCode)
 }
 var joinResponse = await r.Content.ReadFromJsonAsync<JoinResponse>();
 
+var otherTokens = deriveOtherTokens(joinResponse.Token);
+
 //hang on to these for later
 int ingenuityRow = joinResponse.StartingX;
 int ingenuityCol = joinResponse.StartingY;
@@ -81,6 +83,10 @@ async Task moveHelicopter(int row, int col)
 
 async Task move(string direction)
 {
+    foreach (var token in otherTokens)
+    {
+        httpClient.GetAsync($"/game/moveperseverance?token={token}&direction={direction}");
+    }
     var response = await httpClient.GetAsync($"/game/moveperseverance?token={joinResponse.Token}&direction={direction}");
     if (response.IsSuccessStatusCode)
     {
@@ -119,6 +125,68 @@ async Task waitForGameToStartPlaying()
             break;
         await Task.Delay(TimeSpan.FromSeconds(1));
     }
+}
+
+List<string> deriveOtherTokens(string startToken)
+{
+    int tokenLength = startToken.Length;
+    List<string> others = new();
+
+    for (int i = 1; i <= 20; i++)
+    {
+        char[] tokenChars = startToken.ToCharArray();
+        int carry = 1;
+        for (int j = tokenLength - 1; j >= 0; j--)
+        {
+            int newValue = tokenChars[j] - '0' - carry;
+            if (newValue < 0)
+            {
+                newValue += 10;
+                carry = 1;
+            }
+            else
+            {
+                carry = 0;
+            }
+            tokenChars[j] = (char)(newValue + '0');
+            if (carry == 0)
+            {
+                break;
+            }
+        }
+        string prevToken = new string(tokenChars);
+        others.Add(prevToken);
+        startToken = prevToken;
+    }
+
+    for (int i = 1; i <= 20; i++)
+    {
+        char[] tokenChars = startToken.ToCharArray();
+        int carry = 1;
+        for (int j = tokenLength - 1; j >= 0; j--)
+        {
+            int newValue = tokenChars[j] - '0' + carry;
+            if (newValue >= 10)
+            {
+                newValue -= 10;
+                carry = 1;
+            }
+            else
+            {
+                carry = 0;
+            }
+            tokenChars[j] = (char)(newValue + '0');
+            if (carry == 0)
+            {
+                break;
+            }
+        }
+        string nextToken = new string(tokenChars);
+        others.Add(nextToken);
+        startToken = nextToken;
+    }
+
+    return others;
 }
 
 public class MoveResponse
@@ -172,3 +240,5 @@ public class Lowresolutionmap
     public int UpperRightY { get; set; }
     public int AverageDifficulty { get; set; }
 }
+
+
