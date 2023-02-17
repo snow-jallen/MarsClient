@@ -40,7 +40,11 @@ public class IngenuityFlyer
         int directionY = gameState.JoinResponse.TargetY > gameState.IngenuityY ? 1 : -1;
         logger.LogInformation("The target is {directionX} and {directionY} from my starting location", directionX == 1 ? "Left" : "Right", directionY == 1 ? "Up" : "Down");
 
-        var waypoints = new Queue<(int x, int y)>();
+        var waypoints = (directionX, directionY) switch
+        {
+            (1, 1) => targetIsUpAndRight(),
+            _ => throw new ArgumentOutOfRangeException("What happened?")
+        };
 
         int desiredX = gameState.JoinResponse.TargetX;
         int desiredY = gameState.IngenuityY;
@@ -67,6 +71,12 @@ public class IngenuityFlyer
             waypoints.Enqueue((desiredX, desiredY));//move y to target y
         }
 
+        return waypoints;
+    }
+
+    Queue<(int x, int y)> targetIsUpAndRight()
+    {
+        var waypoints = new Queue<(int x, int y)>();
         return waypoints;
     }
 
