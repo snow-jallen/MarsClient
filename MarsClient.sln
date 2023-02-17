@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleClient", "ConsoleCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarsClient.Tests", "MarsClient.Tests\MarsClient.Tests.csproj", "{DCCF226F-59FB-4D9D-858E-8D466CC01A9C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTests", "ConsoleTests\ConsoleTests.csproj", "{1B844AC7-B118-41A9-959C-F811211D659B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{DCCF226F-59FB-4D9D-858E-8D466CC01A9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCCF226F-59FB-4D9D-858E-8D466CC01A9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCCF226F-59FB-4D9D-858E-8D466CC01A9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B844AC7-B118-41A9-959C-F811211D659B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B844AC7-B118-41A9-959C-F811211D659B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B844AC7-B118-41A9-959C-F811211D659B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B844AC7-B118-41A9-959C-F811211D659B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

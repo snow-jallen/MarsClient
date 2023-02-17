@@ -13,7 +13,7 @@ if (args.Any(a => a == "auto"))
             services.AddDbContext<Context>(options => options.UseSqlite("data source=database.db"));
             services.AddHostedService<CoordinationService>();
             services.AddSingleton<GameState>();
-            services.AddSingleton<IngenuityFlier>();
+            services.AddSingleton<IngenuityFlyer>();
             services.AddSingleton((_) =>
             {
                 var result = Parser.Default.ParseArguments<StartInfo>(args);

@@ -7,11 +7,11 @@ internal class CoordinationService : IHostedService
     private readonly StartInfo startInfo;
     private readonly ILogger<CoordinationService> logger;
     private readonly GameState gameState;
-    private readonly IngenuityFlier ingenuity;
+    private readonly IngenuityFlyer ingenuity;
     private HttpClient httpClient;
     private Task ingenuityTask;
 
-    public CoordinationService(StartInfo startInfo, ILogger<CoordinationService> logger, GameState gameState, IngenuityFlier ingenuity)
+    public CoordinationService(StartInfo startInfo, ILogger<CoordinationService> logger, GameState gameState, IngenuityFlyer ingenuity)
     {
         this.startInfo = startInfo;
         this.logger = logger;
@@ -38,6 +38,8 @@ internal class CoordinationService : IHostedService
 
     private async Task<JoinResponse> joinGameAsync()
     {
+        startInfo.Name += DateTime.Now.ToString("mm.ss");
+        logger.LogInformation("Joining game {gameId} as {name}", startInfo.GameId, startInfo.Name);
         var response = await httpClient.GetAsync($"/game/join?gameid={startInfo.GameId}&name={startInfo.Name}");
         if (response.IsSuccessStatusCode)
         {
