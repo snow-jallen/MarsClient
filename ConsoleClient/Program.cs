@@ -1,4 +1,17 @@
-﻿using System.Net.Http.Json;
+﻿using CommandLine;
+
+if (args.Any(a => a == "auto"))
+{
+    await Host.CreateDefaultBuilder(args)
+        .ConfigureServices((_, services) =>
+        {
+            services.AddDbContext<Context>(options => options.UseSqlite("data source=database.db"));
+            services.AddHostedService<CoordinationService>();
+            services.AddSingleton((_) => Parser.Default.ParseArguments<StartInfo>(args).Value);
+        })
+        .RunConsoleAsync();
+    return;
+}
 
 Console.WriteLine("Welcome to the Mars Rover Console Client");
 Console.WriteLine("What server are you connecting to?");
@@ -26,8 +39,8 @@ if (!r.IsSuccessStatusCode)
 var joinResponse = await r.Content.ReadFromJsonAsync<JoinResponse>();
 
 //hang on to these for later
-int ingenuityRow = joinResponse.StartingX;
-int ingenuityCol = joinResponse.StartingY;
+int ingenuityX = joinResponse.StartingX;
+int ingenuityY = joinResponse.StartingY;
 
 await waitForGameToStartPlaying();
 
@@ -50,16 +63,16 @@ while (true)
             await move("Reverse");
             break;
         case ConsoleKey.W:
-            await moveHelicopter(ingenuityRow, ingenuityCol + 2);
+            await moveHelicopter(ingenuityX, ingenuityY + 2);
             break;
         case ConsoleKey.D:
-            await moveHelicopter(ingenuityRow + 2, ingenuityCol);
+            await moveHelicopter(ingenuityX + 2, ingenuityY);
             break;
         case ConsoleKey.S:
-            await moveHelicopter(ingenuityRow, ingenuityCol - 2);
+            await moveHelicopter(ingenuityX, ingenuityY - 2);
             break;
         case ConsoleKey.A:
-            await moveHelicopter(ingenuityRow - 2, ingenuityCol);
+            await moveHelicopter(ingenuityX - 2, ingenuityY);
             break;
     }
 }
@@ -72,8 +85,8 @@ async Task moveHelicopter(int row, int col)
     if (response.IsSuccessStatusCode)
     {
         var moveResponse = await response.Content.ReadFromJsonAsync<IngenuityMoveResponse>();
-        ingenuityRow = moveResponse.X;
-        ingenuityCol = moveResponse.Y;
+        ingenuityX = moveResponse.X;
+        ingenuityY = moveResponse.Y;
 
         //update your internal high-res map with moveResponse.Neighbors
     }
@@ -116,59 +129,10 @@ async Task waitForGameToStartPlaying()
     {
         var statusResult = await httpClient.GetFromJsonAsync<StatusResult>($"/game/status?token={joinResponse.Token}");
         if (statusResult.status == "Playing")
+        {
             break;
+        }
+
         await Task.Delay(TimeSpan.FromSeconds(1));
     }
-}
-
-public class MoveResponse
-{
-    public int Row { get; set; }
-    public int Column { get; set; }
-    public int BatteryLevel { get; set; }
-    public Neighbor[] Neighbors { get; set; }
-    public string Message { get; set; }
-    public string Orientation { get; set; }
-}
-
-public class IngenuityMoveResponse
-{
-    public int X { get; set; }
-    public int Y { get; set; }
-    public int BatteryLevel { get; set; }
-    public IEnumerable<Neighbor> Neighbors { get; set; }
-    public string Message { get; set; }
-}
-
-public class StatusResult
-{
-    public string status { get; set; }
-}
-
-public class JoinResponse
-{
-    public string Token { get; set; }
-    public int StartingX { get; set; }
-    public int StartingY { get; set; }
-    public int TargetX { get; set; }
-    public int TargetY { get; set; }
-    public Neighbor[] Neighbors { get; set; }
-    public Lowresolutionmap[] LowResolutionMap { get; set; }
-    public string Orientation { get; set; }
-}
-
-public class Neighbor
-{
-    public int X { get; set; }
-    public int Y { get; set; }
-    public int Difficulty { get; set; }
-}
-
-public class Lowresolutionmap
-{
-    public int LowerLeftX { get; set; }
-    public int LowerLeftY { get; set; }
-    public int UpperRightX { get; set; }
-    public int UpperRightY { get; set; }
-    public int AverageDifficulty { get; set; }
 }

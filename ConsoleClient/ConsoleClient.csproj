@@ -7,4 +7,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="commandlineparser" Version="2.9.1" />
+    <PackageReference Include="microsoft.entityframeworkcore.design" Version="7.0.3">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="microsoft.entityframeworkcore.sqlite" Version="7.0.3" />
+    <PackageReference Include="microsoft.extensions.hosting" Version="7.0.1" />
+    <PackageReference Include="microsoft.extensions.logging" Version="7.0.0" />
+  </ItemGroup>
+
 </Project>

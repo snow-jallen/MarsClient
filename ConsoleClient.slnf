@@ -1,0 +1,8 @@
+{
+  "solution": {
+    "path": "MarsClient.sln",
+    "projects": [
+      "ConsoleClient\\ConsoleClient.csproj"
+    ]
+  }
+}
