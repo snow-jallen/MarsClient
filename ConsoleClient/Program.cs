@@ -1,13 +1,25 @@
 ﻿using CommandLine;
+using Microsoft.Extensions.Logging;
 
 if (args.Any(a => a == "auto"))
 {
     await Host.CreateDefaultBuilder(args)
+        .ConfigureLogging(config =>
+        {
+            config.AddFilter("Microsoft", LogLevel.Warning);
+        })
         .ConfigureServices((_, services) =>
         {
             services.AddDbContext<Context>(options => options.UseSqlite("data source=database.db"));
             services.AddHostedService<CoordinationService>();
-            services.AddSingleton((_) => Parser.Default.ParseArguments<StartInfo>(args).Value);
+            services.AddSingleton<GameState>();
+            services.AddSingleton<IngenuityFlier>();
+            services.AddSingleton((_) =>
+            {
+                var result = Parser.Default.ParseArguments<StartInfo>(args);
+                return result.Value ?? throw new Exception("Invalid arguments");
+            });
+            services.AddSingleton((s) => new HttpClient { BaseAddress = new Uri(s.GetRequiredService<StartInfo>().ServerAddress) });
         })
         .RunConsoleAsync();
     return;

@@ -6,15 +6,17 @@ internal class CoordinationService : IHostedService
 {
     private readonly StartInfo startInfo;
     private readonly ILogger<CoordinationService> logger;
+    private readonly GameState gameState;
+    private readonly IngenuityFlier ingenuity;
     private HttpClient httpClient;
-    private JoinResponse? joinResponse;
-    private int ingenuityX;
-    private int ingenuityY;
+    private Task ingenuityTask;
 
-    public CoordinationService(StartInfo startInfo, ILogger<CoordinationService> logger)
+    public CoordinationService(StartInfo startInfo, ILogger<CoordinationService> logger, GameState gameState, IngenuityFlier ingenuity)
     {
         this.startInfo = startInfo;
         this.logger = logger;
+        this.gameState = gameState;
+        this.ingenuity = ingenuity;
         httpClient = new HttpClient()
         {
             BaseAddress = new Uri(startInfo.ServerAddress),
@@ -23,14 +25,15 @@ internal class CoordinationService : IHostedService
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
-        joinResponse = await joinGameAsync();
+        gameState.JoinResponse = await joinGameAsync();
 
-        ingenuityX = joinResponse.StartingX;
-        ingenuityY = joinResponse.StartingY;
-
+        logger.LogInformation("Waiting for game to start...");
         await waitForGameToStartPlaying();
 
-        Task.Run(flyIngenuity);
+        logger.LogInformation("Game started.  Beginning to fly ingenuity.");
+        ingenuityTask = Task.Run(ingenuity.StartFlyingAsync);
+
+        logger.LogInformation("Now that ingenuity is flying, I can start moving the rover...");
     }
 
     private async Task<JoinResponse> joinGameAsync()
@@ -54,7 +57,7 @@ internal class CoordinationService : IHostedService
     {
         while (true)
         {
-            var statusResult = await httpClient.GetFromJsonAsync<StatusResult>($"/game/status?token={joinResponse?.Token}");
+            var statusResult = await httpClient.GetFromJsonAsync<StatusResult>($"/game/status?token={gameState.Token}");
             if (statusResult.status == "Playing")
             {
                 break;
@@ -64,27 +67,9 @@ internal class CoordinationService : IHostedService
         }
     }
 
-    void flyIngenuity()
-    {
-        //head toward taget
-    }
-
-    async Task moveIngenuity(int row, int col)
-    {
-        var response = await httpClient.GetAsync($"/game/moveingenuity?token={joinResponse.Token}&destinationRow={row}&destinationColumn={col}");
-        if (response.IsSuccessStatusCode)
-        {
-            var moveResponse = await response.Content.ReadFromJsonAsync<IngenuityMoveResponse>();
-            ingenuityX = moveResponse.X;
-            ingenuityY = moveResponse.Y;
-
-            //update your internal high-res map with moveResponse.Neighbors
-        }
-    }
-
     async Task movePerseverance(string direction)
     {
-        var response = await httpClient.GetAsync($"/game/moveperseverance?token={joinResponse.Token}&direction={direction}");
+        var response = await httpClient.GetAsync($"/game/moveperseverance?token={gameState.Token}&direction={direction}");
         if (response.IsSuccessStatusCode)
         {
             var moveResult = await response.Content.ReadFromJsonAsync<MoveResponse>();
