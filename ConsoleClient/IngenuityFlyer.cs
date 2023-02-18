@@ -40,108 +40,28 @@ public class IngenuityFlyer
         int directionY = gameState.JoinResponse.TargetY > gameState.IngenuityY ? 1 : -1;
         logger.LogInformation("The target is {directionX} and {directionY} from my starting location", directionX == 1 ? "Left" : "Right", directionY == 1 ? "Up" : "Down");
 
-        var waypoints = (directionX, directionY) switch
-        {
-            (1, 1) => targetIsUpAndRight(),
-            (-1, 1) => targetIsUpAndLeft(),
-            (-1, -1) => targetIsDownAndLeft(),
-            (1, -1) => targetIsDownAndRight(),
-            _ => throw new ArgumentOutOfRangeException("What happened?")
-        };
-
-        return waypoints;
-    }
-
-    private Queue<(int x, int y)> targetIsDownAndRight()
-    {
         var waypoints = new Queue<(int x, int y)>();
-
-        int directionY = -1;
-        int directionX = 1;
+        var targetIsToTheRight = directionX > 0;
+        var targetIsAbove = directionY > 0;
 
         int desiredX = gameState.JoinResponse.TargetX;
         int desiredY = gameState.IngenuityY;
         waypoints.Enqueue((desiredX, desiredY));//move x to target x
 
-        while (desiredY > gameState.JoinResponse.TargetY)
+        while (targetIsAbove ? desiredY < gameState.JoinResponse.TargetY : desiredY > gameState.JoinResponse.TargetY)
         {
             desiredY += directionY * 10;
             waypoints.Enqueue((desiredX, desiredY));
 
             directionX *= -1;
-            desiredX = directionX > 0 ? gameState.JoinResponse.TargetX : gameState.IngenuityX;
-            waypoints.Enqueue((desiredX, desiredY));
-        }
-
-        return waypoints;
-    }
-
-    private Queue<(int x, int y)> targetIsDownAndLeft()
-    {
-        var waypoints = new Queue<(int x, int y)>();
-
-        int directionY = -1;
-        int directionX = -1;
-
-        int desiredX = gameState.JoinResponse.TargetX;
-        int desiredY = gameState.IngenuityY;
-        waypoints.Enqueue((desiredX, desiredY));//move x to target x
-
-        while (desiredY > gameState.JoinResponse.TargetY)
-        {
-            desiredY += directionY * 10;
-            waypoints.Enqueue((desiredX, desiredY));
-
-            directionX *= -1;
-            desiredX = directionX < 0 ? gameState.JoinResponse.TargetX : gameState.IngenuityX;
-            waypoints.Enqueue((desiredX, desiredY));
-        }
-
-        return waypoints;
-    }
-
-    Queue<(int x, int y)> targetIsUpAndLeft()
-    {
-        var waypoints = new Queue<(int x, int y)>();
-
-        int directionY = 1;
-        int directionX = -1;
-
-        int desiredX = gameState.JoinResponse.TargetX;
-        int desiredY = gameState.IngenuityY;
-        waypoints.Enqueue((desiredX, desiredY));//move x to target x
-
-        while (desiredY < gameState.JoinResponse.TargetY)
-        {
-            desiredY += directionY * 10;//up a row
-            waypoints.Enqueue((desiredX, desiredY));
-
-            directionX *= -1;
-            desiredX = directionX < 0 ? gameState.JoinResponse.TargetX : gameState.IngenuityX;
-            waypoints.Enqueue((desiredX, desiredY));
-        }
-
-        return waypoints;
-    }
-
-    Queue<(int x, int y)> targetIsUpAndRight()
-    {
-        var waypoints = new Queue<(int x, int y)>();
-
-        int directionY = 1;
-        int directionX = 1;
-
-        int desiredX = gameState.JoinResponse.TargetX;
-        int desiredY = gameState.IngenuityY;
-        waypoints.Enqueue((desiredX, desiredY));//move x to target x
-
-        while (desiredY < gameState.JoinResponse.TargetY)
-        {
-            desiredY += directionY * 10;//up a row
-            waypoints.Enqueue((desiredX, desiredY));
-
-            directionX *= -1;
-            desiredX = directionX > 0 ? gameState.JoinResponse.TargetX : gameState.IngenuityX;
+            if (targetIsToTheRight)
+            {
+                desiredX = directionX > 0 ? gameState.JoinResponse.TargetX : gameState.IngenuityX;
+            }
+            else
+            {
+                desiredX = directionX < 0 ? gameState.JoinResponse.TargetX : gameState.IngenuityX;
+            }
             waypoints.Enqueue((desiredX, desiredY));
         }
 
