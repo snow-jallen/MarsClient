@@ -43,32 +43,82 @@ public class IngenuityFlyer
         var waypoints = (directionX, directionY) switch
         {
             (1, 1) => targetIsUpAndRight(),
+            (-1, 1) => targetIsUpAndLeft(),
+            (-1, -1) => targetIsDownAndLeft(),
+            (1, -1) => targetIsDownAndRight(),
             _ => throw new ArgumentOutOfRangeException("What happened?")
         };
+
+        return waypoints;
+    }
+
+    private Queue<(int x, int y)> targetIsDownAndRight()
+    {
+        var waypoints = new Queue<(int x, int y)>();
+
+        int directionY = -1;
+        int directionX = 1;
 
         int desiredX = gameState.JoinResponse.TargetX;
         int desiredY = gameState.IngenuityY;
         waypoints.Enqueue((desiredX, desiredY));//move x to target x
 
-        desiredX = gameState.JoinResponse.TargetX;
-        desiredY = gameState.JoinResponse.TargetY;
-        waypoints.Enqueue((desiredX, desiredY));//move y to target y
-
-        directionX *= -1;
-
-        while (Math.Abs(desiredX - gameState.JoinResponse.StartingX) > 5)
+        while (desiredY > gameState.JoinResponse.TargetY)
         {
-            desiredX += directionX * 10;
+            desiredY += directionY * 10;
             waypoints.Enqueue((desiredX, desiredY));
 
-            desiredY = gameState.JoinResponse.StartingY;
+            directionX *= -1;
+            desiredX = directionX > 0 ? gameState.JoinResponse.TargetX : gameState.IngenuityX;
+            waypoints.Enqueue((desiredX, desiredY));
+        }
+
+        return waypoints;
+    }
+
+    private Queue<(int x, int y)> targetIsDownAndLeft()
+    {
+        var waypoints = new Queue<(int x, int y)>();
+
+        int directionY = -1;
+        int directionX = -1;
+
+        int desiredX = gameState.JoinResponse.TargetX;
+        int desiredY = gameState.IngenuityY;
+        waypoints.Enqueue((desiredX, desiredY));//move x to target x
+
+        while (desiredY > gameState.JoinResponse.TargetY)
+        {
+            desiredY += directionY * 10;
             waypoints.Enqueue((desiredX, desiredY));
 
-            desiredX += directionX * 10;
-            waypoints.Enqueue((desiredX, desiredY));//move y to target y
+            directionX *= -1;
+            desiredX = directionX < 0 ? gameState.JoinResponse.TargetX : gameState.IngenuityX;
+            waypoints.Enqueue((desiredX, desiredY));
+        }
 
-            desiredY = gameState.JoinResponse.TargetY;
-            waypoints.Enqueue((desiredX, desiredY));//move y to target y
+        return waypoints;
+    }
+
+    Queue<(int x, int y)> targetIsUpAndLeft()
+    {
+        var waypoints = new Queue<(int x, int y)>();
+
+        int directionY = 1;
+        int directionX = -1;
+
+        int desiredX = gameState.JoinResponse.TargetX;
+        int desiredY = gameState.IngenuityY;
+        waypoints.Enqueue((desiredX, desiredY));//move x to target x
+
+        while (desiredY < gameState.JoinResponse.TargetY)
+        {
+            desiredY += directionY * 10;//up a row
+            waypoints.Enqueue((desiredX, desiredY));
+
+            directionX *= -1;
+            desiredX = directionX < 0 ? gameState.JoinResponse.TargetX : gameState.IngenuityX;
+            waypoints.Enqueue((desiredX, desiredY));
         }
 
         return waypoints;
@@ -77,13 +127,33 @@ public class IngenuityFlyer
     Queue<(int x, int y)> targetIsUpAndRight()
     {
         var waypoints = new Queue<(int x, int y)>();
+
+        int directionY = 1;
+        int directionX = 1;
+
+        int desiredX = gameState.JoinResponse.TargetX;
+        int desiredY = gameState.IngenuityY;
+        waypoints.Enqueue((desiredX, desiredY));//move x to target x
+
+        while (desiredY < gameState.JoinResponse.TargetY)
+        {
+            desiredY += directionY * 10;//up a row
+            waypoints.Enqueue((desiredX, desiredY));
+
+            directionX *= -1;
+            desiredX = directionX > 0 ? gameState.JoinResponse.TargetX : gameState.IngenuityX;
+            waypoints.Enqueue((desiredX, desiredY));
+        }
+
         return waypoints;
     }
 
     async Task flyTo(int x, int y)
     {
         if (gameState?.JoinResponse == null)
+        {
             return;
+        }
 
         int targetX = gameState.JoinResponse.TargetX;
         int targetY = gameState.JoinResponse.TargetY;
