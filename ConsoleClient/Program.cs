@@ -14,6 +14,7 @@ if (args.Any(a => a == "auto"))
             services.AddHostedService<CoordinationService>();
             services.AddSingleton<GameState>();
             services.AddSingleton<IngenuityFlyer>();
+            services.AddSingleton<PerseveranceDriver>();
             services.AddSingleton((_) =>
             {
                 var result = Parser.Default.ParseArguments<StartInfo>(args);

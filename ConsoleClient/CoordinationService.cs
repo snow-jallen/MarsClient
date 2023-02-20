@@ -8,15 +8,16 @@ internal class CoordinationService : IHostedService
     private readonly ILogger<CoordinationService> logger;
     private readonly GameState gameState;
     private readonly IngenuityFlyer ingenuity;
+    private readonly PerseveranceDriver perseverance;
     private HttpClient httpClient;
-    private Task ingenuityTask;
 
-    public CoordinationService(StartInfo startInfo, ILogger<CoordinationService> logger, GameState gameState, IngenuityFlyer ingenuity)
+    public CoordinationService(StartInfo startInfo, ILogger<CoordinationService> logger, GameState gameState, IngenuityFlyer ingenuity, PerseveranceDriver perseverance)
     {
         this.startInfo = startInfo;
         this.logger = logger;
         this.gameState = gameState;
         this.ingenuity = ingenuity;
+        this.perseverance = perseverance;
         httpClient = new HttpClient()
         {
             BaseAddress = new Uri(startInfo.ServerAddress),
@@ -31,7 +32,8 @@ internal class CoordinationService : IHostedService
         await waitForGameToStartPlaying();
 
         logger.LogInformation("Game started.  Beginning to fly ingenuity.");
-        ingenuityTask = Task.Run(ingenuity.StartFlyingAsync);
+        _ = Task.Run(ingenuity.StartFlyingAsync);
+        _ = Task.Run(perseverance.StartDrivingAsync);
 
         logger.LogInformation("Now that ingenuity is flying, I can start moving the rover...");
     }

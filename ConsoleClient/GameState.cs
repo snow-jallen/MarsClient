@@ -27,6 +27,8 @@ public class GameState
             Token = joinResponse.Token;
             Height = joinResponse.LowResolutionMap.Max(t => t.UpperRightY);
             Width = joinResponse.LowResolutionMap.Max(w => w.UpperRightX);
+            Orientation = joinResponse.Orientation;
+            Target = (joinResponse.TargetX, joinResponse.TargetY);
         }
     }
 
@@ -35,13 +37,19 @@ public class GameState
     public string Token { get; internal set; }
     public int Height { get; private set; }
     public int Width { get; private set; }
-
+    public string Orientation { get; set; }
+    public (int TargetX, int TargetY) Target { get; private set; }
     public ConcurrentDictionary<(int, int), int> Map { get; } = new();
+    public int PerseveranceBatteryLevel { get; internal set; }
+    public (int X, int Y) Perseverance { get; internal set; }
 
     public int GetDifficulty(int x, int y)
     {
         if (Map.ContainsKey((x, y)))
+        {
             return Map[(x, y)];
+        }
+
         return joinResponse?.LowResolutionMap.Single(t => t.LowerLeftX <= x && t.LowerLeftY <= y && t.UpperRightX <= x && t.UpperRightY <= y).AverageDifficulty ?? -1;
     }
 

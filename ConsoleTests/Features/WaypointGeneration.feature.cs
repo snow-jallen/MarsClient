@@ -100,288 +100,6 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                            "*",
-                            "*",
-                            "*",
-                            "*",
-                            "*",
-                            "*",
-                            "*",
-                            "*",
-                            "*",
-                            "*"});
-                table1.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table1.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table1.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table1.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "T",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table1.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table1.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table1.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table1.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table1.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table1.AddRow(new string[] {
-                            "S",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-#line 6
- testRunner.Given("the following map where every cell is 10 cells", ((string)(null)), table1, "Given ");
-#line hidden
-#line 18
- testRunner.When("I generate the waypoints", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                            "*",
-                            "*",
-                            "*",
-                            "*",
-                            "*",
-                            "*",
-                            "*",
-                            "*",
-                            "*",
-                            "*"});
-                table2.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table2.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table2.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table2.AddRow(new string[] {
-                            "12",
-                            "",
-                            "",
-                            "",
-                            "13",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table2.AddRow(new string[] {
-                            "11",
-                            "",
-                            "",
-                            "",
-                            "10",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table2.AddRow(new string[] {
-                            "8",
-                            "",
-                            "",
-                            "",
-                            "9",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table2.AddRow(new string[] {
-                            "7",
-                            "",
-                            "",
-                            "",
-                            "6",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table2.AddRow(new string[] {
-                            "4",
-                            "",
-                            "",
-                            "",
-                            "5",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table2.AddRow(new string[] {
-                            "3",
-                            "",
-                            "",
-                            "",
-                            "2",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table2.AddRow(new string[] {
-                            "S",
-                            "",
-                            "",
-                            "",
-                            "1",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-#line 19
- testRunner.Then("the waypoints should be as follows", ((string)(null)), table2, "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Starting below and right of target")]
-        public virtual void StartingBelowAndRightOfTarget()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Starting below and right of target", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 32
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "*",
                             "*",
@@ -431,44 +149,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table3.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table3.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table3.AddRow(new string[] {
-                            "",
-                            "",
                             "T",
                             "",
                             "",
                             "",
                             "",
-                            "",
-                            "",
                             ""});
                 table3.AddRow(new string[] {
                             "",
@@ -500,13 +185,46 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             "",
+                            "",
+                            "",
+                            ""});
+                table3.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+                table3.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+                table3.AddRow(new string[] {
                             "S",
                             "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
                             ""});
-#line 33
+#line 6
  testRunner.Given("the following map where every cell is 10 cells", ((string)(null)), table3, "Given ");
 #line hidden
-#line 45
+#line 18
  testRunner.When("I generate the waypoints", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -554,39 +272,41 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             ""});
                 table4.AddRow(new string[] {
+                            "12",
                             "",
                             "",
                             "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table4.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
+                            "13",
                             "",
                             "",
                             "",
                             "",
                             ""});
                 table4.AddRow(new string[] {
+                            "11",
                             "",
                             "",
                             "",
-                            "",
-                            "",
+                            "10",
                             "",
                             "",
                             "",
                             "",
                             ""});
                 table4.AddRow(new string[] {
+                            "8",
+                            "",
+                            "",
+                            "",
+                            "9",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+                table4.AddRow(new string[] {
+                            "7",
+                            "",
                             "",
                             "",
                             "6",
@@ -594,10 +314,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             "",
-                            "7",
-                            "",
                             ""});
                 table4.AddRow(new string[] {
+                            "4",
+                            "",
                             "",
                             "",
                             "5",
@@ -605,10 +325,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             "",
-                            "4",
-                            "",
                             ""});
                 table4.AddRow(new string[] {
+                            "3",
+                            "",
                             "",
                             "",
                             "2",
@@ -616,10 +336,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             "",
-                            "3",
-                            "",
                             ""});
                 table4.AddRow(new string[] {
+                            "S",
+                            "",
                             "",
                             "",
                             "1",
@@ -627,10 +347,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             "",
-                            "S",
-                            "",
                             ""});
-#line 46
+#line 19
  testRunner.Then("the waypoints should be as follows", ((string)(null)), table4, "Then ");
 #line hidden
             }
@@ -638,13 +356,13 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Starting above and right of target")]
-        public virtual void StartingAboveAndRightOfTarget()
+        [NUnit.Framework.DescriptionAttribute("Starting below and right of target")]
+        public virtual void StartingBelowAndRightOfTarget()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Starting above and right of target", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 59
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Starting below and right of target", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 32
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -705,7 +423,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             "",
-                            "S",
+                            "",
                             "",
                             ""});
                 table5.AddRow(new string[] {
@@ -782,13 +500,13 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             "",
-                            "",
+                            "S",
                             "",
                             ""});
-#line 60
+#line 33
  testRunner.Given("the following map where every cell is 10 cells", ((string)(null)), table5, "Given ");
 #line hidden
-#line 72
+#line 45
  testRunner.When("I generate the waypoints", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -827,34 +545,45 @@ this.ScenarioInitialize(scenarioInfo);
                 table6.AddRow(new string[] {
                             "",
                             "",
-                            "1",
                             "",
                             "",
                             "",
                             "",
-                            "S",
+                            "",
+                            "",
                             "",
                             ""});
                 table6.AddRow(new string[] {
                             "",
                             "",
-                            "2",
                             "",
                             "",
                             "",
                             "",
-                            "3",
+                            "",
+                            "",
                             "",
                             ""});
                 table6.AddRow(new string[] {
                             "",
                             "",
-                            "5",
                             "",
                             "",
                             "",
                             "",
-                            "4",
+                            "",
+                            "",
+                            "",
+                            ""});
+                table6.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
                             "",
                             ""});
                 table6.AddRow(new string[] {
@@ -871,48 +600,37 @@ this.ScenarioInitialize(scenarioInfo);
                 table6.AddRow(new string[] {
                             "",
                             "",
-                            "9",
+                            "5",
                             "",
                             "",
                             "",
                             "",
-                            "8",
-                            "",
-                            ""});
-                table6.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
+                            "4",
                             "",
                             ""});
                 table6.AddRow(new string[] {
                             "",
                             "",
+                            "2",
                             "",
                             "",
                             "",
                             "",
-                            "",
-                            "",
+                            "3",
                             "",
                             ""});
                 table6.AddRow(new string[] {
                             "",
                             "",
+                            "1",
                             "",
                             "",
                             "",
                             "",
-                            "",
-                            "",
+                            "S",
                             "",
                             ""});
-#line 73
+#line 46
  testRunner.Then("the waypoints should be as follows", ((string)(null)), table6, "Then ");
 #line hidden
             }
@@ -920,13 +638,13 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Starting above and left of target")]
-        public virtual void StartingAboveAndLeftOfTarget()
+        [NUnit.Framework.DescriptionAttribute("Starting above and right of target")]
+        public virtual void StartingAboveAndRightOfTarget()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Starting above and left of target", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 86
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Starting above and right of target", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 59
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -960,13 +678,35 @@ this.ScenarioInitialize(scenarioInfo);
                 table7.AddRow(new string[] {
                             "",
                             "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+                table7.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+                table7.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
                             "S",
                             "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
                             ""});
                 table7.AddRow(new string[] {
                             "",
@@ -1002,44 +742,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             ""});
                 table7.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table7.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""});
-                table7.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
                             "",
                             "",
                             "T",
                             "",
                             "",
-                            ""});
-                table7.AddRow(new string[] {
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
                             "",
                             "",
                             "",
@@ -1067,10 +774,21 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             ""});
-#line 87
+                table7.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+#line 60
  testRunner.Given("the following map where every cell is 10 cells", ((string)(null)), table7, "Given ");
 #line hidden
-#line 99
+#line 72
  testRunner.When("I generate the waypoints", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1087,6 +805,288 @@ this.ScenarioInitialize(scenarioInfo);
                 table8.AddRow(new string[] {
                             "",
                             "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+                table8.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+                table8.AddRow(new string[] {
+                            "",
+                            "",
+                            "1",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "S",
+                            "",
+                            ""});
+                table8.AddRow(new string[] {
+                            "",
+                            "",
+                            "2",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "3",
+                            "",
+                            ""});
+                table8.AddRow(new string[] {
+                            "",
+                            "",
+                            "5",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "4",
+                            "",
+                            ""});
+                table8.AddRow(new string[] {
+                            "",
+                            "",
+                            "6",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "7",
+                            "",
+                            ""});
+                table8.AddRow(new string[] {
+                            "",
+                            "",
+                            "9",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "8",
+                            "",
+                            ""});
+                table8.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+                table8.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+                table8.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+#line 73
+ testRunner.Then("the waypoints should be as follows", ((string)(null)), table8, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Starting above and left of target")]
+        public virtual void StartingAboveAndLeftOfTarget()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Starting above and left of target", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 86
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                            "*",
+                            "*",
+                            "*",
+                            "*",
+                            "*",
+                            "*",
+                            "*",
+                            "*",
+                            "*",
+                            "*"});
+                table9.AddRow(new string[] {
+                            "",
+                            "",
+                            "S",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+                table9.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+                table9.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+                table9.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+                table9.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+                table9.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+                table9.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "T",
+                            "",
+                            "",
+                            ""});
+                table9.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+                table9.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+                table9.AddRow(new string[] {
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""});
+#line 87
+ testRunner.Given("the following map where every cell is 10 cells", ((string)(null)), table9, "Given ");
+#line hidden
+#line 99
+ testRunner.When("I generate the waypoints", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                            "*",
+                            "*",
+                            "*",
+                            "*",
+                            "*",
+                            "*",
+                            "*",
+                            "*",
+                            "*",
+                            "*"});
+                table10.AddRow(new string[] {
+                            "",
+                            "",
                             "S",
                             "",
                             "",
@@ -1095,7 +1095,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             ""});
-                table8.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "",
                             "",
                             "3",
@@ -1106,7 +1106,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             ""});
-                table8.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "",
                             "",
                             "4",
@@ -1117,7 +1117,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             ""});
-                table8.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "",
                             "",
                             "7",
@@ -1128,7 +1128,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             ""});
-                table8.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "",
                             "",
                             "8",
@@ -1139,7 +1139,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             ""});
-                table8.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "",
                             "",
                             "11",
@@ -1150,7 +1150,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             ""});
-                table8.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "",
                             "",
                             "12",
@@ -1161,7 +1161,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             ""});
-                table8.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "",
                             "",
                             "",
@@ -1172,7 +1172,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             ""});
-                table8.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "",
                             "",
                             "",
@@ -1183,7 +1183,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "",
                             ""});
-                table8.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "",
                             "",
                             "",
@@ -1195,7 +1195,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             ""});
 #line 100
- testRunner.Then("the waypoints should be as follows", ((string)(null)), table8, "Then ");
+ testRunner.Then("the waypoints should be as follows", ((string)(null)), table10, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
