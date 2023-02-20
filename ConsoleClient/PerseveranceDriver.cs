@@ -27,8 +27,7 @@ public class PerseveranceDriver
                 gameState.Orientation = moveResult.Orientation;
                 gameState.PerseveranceBatteryLevel = moveResult.BatteryLevel;
                 gameState.UpdateMap(moveResult.Neighbors);
-                gameState.PerseveranceX = moveResult.Row;
-                gameState.PerseveranceY = moveResult.Column;
+                gameState.Perseverance = (moveResult.Row, moveResult.Column);
 
             }
         }
