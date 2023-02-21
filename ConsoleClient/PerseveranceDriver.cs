@@ -28,13 +28,31 @@ public class PerseveranceDriver
                 gameState.PerseveranceBatteryLevel = moveResult.BatteryLevel;
                 gameState.UpdateMap(moveResult.Neighbors);
                 gameState.Perseverance = (moveResult.Row, moveResult.Column);
-
             }
         }
     }
 
-    private string determineDirection(string orientation, (int TargetX, int TargetY) target)
+    private string determineDirection(string orientation, (int x, int y) rover, (int TargetX, int TargetY) target)
     {
-        return "Forward";
+        if (target.TargetY > rover.y)
+        {
+            return orientation switch
+            {
+                "North" => "Forward",
+                "East" => "Left",
+                "West" => "Right",
+                "South" => "Left"
+            };
+        }
+        else
+        {
+            return orientation switch
+            {
+                "North" => "Forward",
+                "East" => "Left",
+                "West" => "Right",
+                "South" => "Left"
+            };
+        }
     }
 }
