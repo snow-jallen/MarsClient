@@ -94,7 +94,7 @@ async Task move(string direction)
         Console.CursorTop -= 3;
 
         //update output
-        Console.WriteLine($"Current row: {moveResult.Row}; Current column: {moveResult.Column}; Target row: {joinResponse.TargetX}; Target column: {joinResponse.TargetY}");
+        Console.WriteLine($"Current X: {moveResult.X}; Current Y: {moveResult.Y}; Target X: {joinResponse.TargetX}; Target Y: {joinResponse.TargetY}");
         Console.WriteLine($"Battery level: {moveResult.BatteryLevel}; Orientation: {moveResult.Orientation}");
         Console.WriteLine(moveResult.Message);
 
@@ -123,8 +123,8 @@ async Task waitForGameToStartPlaying()
 
 public class MoveResponse
 {
-    public int Row { get; set; }
-    public int Column { get; set; }
+    public int X { get; set; }
+    public int Y { get; set; }
     public int BatteryLevel { get; set; }
     public Neighbor[] Neighbors { get; set; }
     public string Message { get; set; }
