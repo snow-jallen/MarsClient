@@ -2,7 +2,7 @@
   "profiles": {
     "ConsoleClient": {
       "commandName": "Project",
-      "commandLineArgs": "auto --gameId ag --name Alex"
+      "commandLineArgs": "auto --gameId e --name Alex"
     }
   }
 }
