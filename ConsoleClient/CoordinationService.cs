@@ -32,7 +32,7 @@ internal class CoordinationService : IHostedService
         await waitForGameToStartPlaying();
 
         logger.LogInformation("Game started.  Beginning to fly ingenuity.");
-        _ = Task.Run(ingenuity.StartFlyingAsync);
+        //_ = Task.Run(ingenuity.StartFlyingAsync);
         _ = Task.Run(perseverance.StartDrivingAsync);
 
         logger.LogInformation("Now that ingenuity is flying, I can start moving the rover...");

@@ -19,23 +19,67 @@ public class PerseveranceDriver
     {
         while (true)
         {
-            var direction = determineDirection(gameState.Orientation, gameState.Target);
+            var direction = determineDirection(gameState.Orientation, gameState.Perseverance, gameState.Target);
             var response = await httpClient.GetAsync($"/game/moveperseverance?token={gameState.Token}&direction={direction}");
             if (response.IsSuccessStatusCode)
             {
                 var moveResult = await response.Content.ReadFromJsonAsync<MoveResponse>();
+                if (moveResult.Message.Contains("Insufficient battery"))
+                {
+                    logger.LogInformation("Insufficient battery.  Current battery level: {batteryLevel}", moveResult.BatteryLevel);
+                    await Task.Delay(TimeSpan.FromSeconds(1));
+                }
+
                 gameState.Orientation = moveResult.Orientation;
                 gameState.PerseveranceBatteryLevel = moveResult.BatteryLevel;
                 gameState.UpdateMap(moveResult.Neighbors);
-                gameState.PerseveranceX = moveResult.Row;
-                gameState.PerseveranceY = moveResult.Column;
-
+                gameState.Perseverance = (moveResult.X, moveResult.Y);
+            }
+            else
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    logger.LogWarning("You either won, or the game is over, or something weird...I'm not playing any more.");
+                    break;
+                }
+                logger.LogInformation("Status code: {statusCode}; Reason Phrase: {reasonPhrase}", response.StatusCode, response.ReasonPhrase);
             }
         }
     }
 
-    private string determineDirection(string orientation, (int TargetX, int TargetY) target)
+    private string determineDirection(string orientation, (int x, int y) perseverance, (int TargetX, int TargetY) target)
     {
-        return "Forward";
+        var targetIsToTheRight = (target.TargetX > perseverance.x);
+        if (target.TargetY == perseverance.y)
+        {
+            if (targetIsToTheRight)
+            {
+                if (orientation == "East")
+                {
+                    return "Forward";
+                }
+                return "Right";
+            }
+            if (orientation == "West")
+            {
+                return "Forward";
+            }
+            return "Left";
+        }
+        var targetIsAbove = target.TargetY > perseverance.y;
+        if (targetIsAbove)
+        {
+            if (orientation == "North")
+            {
+                return "Forward";
+            }
+
+            return "Right";
+        }
+        if (orientation == "South")
+        {
+            return "Forward";
+        }
+        return "Right";
     }
 }

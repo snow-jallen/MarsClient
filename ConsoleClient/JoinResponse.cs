@@ -2,8 +2,8 @@
 
 public class MoveResponse
 {
-    public int Row { get; set; }
-    public int Column { get; set; }
+    public int X { get; set; }
+    public int Y { get; set; }
     public int BatteryLevel { get; set; }
     public Neighbor[] Neighbors { get; set; }
     public string Message { get; set; }
