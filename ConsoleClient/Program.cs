@@ -120,7 +120,7 @@ async Task move(string direction)
         Console.CursorTop -= 3;
 
         //update output
-        Console.WriteLine($"Current row: {moveResult.X}; Current column: {moveResult.Y}; Target row: {joinResponse.TargetX}; Target column: {joinResponse.TargetY}");
+        Console.WriteLine($"Current row: {moveResult.X}; Current column: {moveResult.Y}; Targets: {string.Join("; ", joinResponse.Targets.Select(t => $"({t.X},{t.Y})"))}");
         Console.WriteLine($"Battery level: {moveResult.BatteryLevel}; Orientation: {moveResult.Orientation}");
         Console.WriteLine(moveResult.Message);
 

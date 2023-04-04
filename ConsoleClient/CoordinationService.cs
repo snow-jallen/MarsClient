@@ -70,20 +70,4 @@ internal class CoordinationService : IHostedService
             await Task.Delay(TimeSpan.FromSeconds(1));
         }
     }
-
-    async Task movePerseverance(string direction)
-    {
-        var response = await httpClient.GetAsync($"/game/moveperseverance?token={gameState.Token}&direction={direction}");
-        if (response.IsSuccessStatusCode)
-        {
-            var moveResult = await response.Content.ReadFromJsonAsync<MoveResponse>();
-
-            if (moveResult.Message == "You made it to the target!")
-            {
-                Console.WriteLine();
-                Console.WriteLine("** Congratulations!! **");
-                Environment.Exit(0);
-            }
-        }
-    }
 }

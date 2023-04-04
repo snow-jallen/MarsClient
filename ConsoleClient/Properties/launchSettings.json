@@ -2,7 +2,7 @@
   "profiles": {
     "ConsoleClient": {
       "commandName": "Project",
-      "commandLineArgs": "auto --gameId e --name Alex"
+      "commandLineArgs": "auto -g a -n Jonathan -s https://localhost:7287"
     }
   }
 }

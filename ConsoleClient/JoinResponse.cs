@@ -29,12 +29,13 @@ public class JoinResponse
     public string Token { get; set; }
     public int StartingX { get; set; }
     public int StartingY { get; set; }
-    public int TargetX { get; set; }
-    public int TargetY { get; set; }
+    public Location[] Targets { get; set; }
     public Neighbor[] Neighbors { get; set; }
     public Lowresolutionmap[] LowResolutionMap { get; set; }
     public string Orientation { get; set; }
 }
+
+public record Location(int X, int Y);
 
 public class Neighbor
 {

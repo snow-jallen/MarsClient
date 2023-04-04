@@ -33,36 +33,39 @@ public class IngenuityFlyer
     {
         var maxX = gameState.Width;
         var maxY = gameState.Height;
+        var waypoints = new Queue<(int x, int y)>();
 
         logger.LogInformation("Starting at {ingenuityX},{ingenuityY}", gameState.IngenuityX, gameState.IngenuityY);
 
-        int directionX = gameState.JoinResponse.TargetX > gameState.IngenuityX ? 1 : -1;
-        int directionY = gameState.JoinResponse.TargetY > gameState.IngenuityY ? 1 : -1;
-        logger.LogInformation("The target is {directionX} and {directionY} from my starting location", directionX == 1 ? "Left" : "Right", directionY == 1 ? "Up" : "Down");
-
-        var waypoints = new Queue<(int x, int y)>();
-        var targetIsToTheRight = directionX > 0;
-        var targetIsAbove = directionY > 0;
-
-        int desiredX = gameState.JoinResponse.TargetX;
-        int desiredY = gameState.IngenuityY;
-        waypoints.Enqueue((desiredX, desiredY));//move x to target x
-
-        while (targetIsAbove ? desiredY < gameState.JoinResponse.TargetY : desiredY > gameState.JoinResponse.TargetY)
+        foreach (var target in gameState.JoinResponse.Targets)
         {
-            desiredY += directionY * 10;
-            waypoints.Enqueue((desiredX, desiredY));
+            int directionX = target.X > gameState.IngenuityX ? 1 : -1;
+            int directionY = target.Y > gameState.IngenuityY ? 1 : -1;
+            logger.LogInformation("The target is {directionX} and {directionY} from my starting location", directionX == 1 ? "Left" : "Right", directionY == 1 ? "Up" : "Down");
 
-            directionX *= -1;
-            if (targetIsToTheRight)
+            var targetIsToTheRight = directionX > 0;
+            var targetIsAbove = directionY > 0;
+
+            int desiredX = target.X;
+            int desiredY = gameState.IngenuityY;
+            waypoints.Enqueue((desiredX, desiredY));//move x to target x
+
+            while (targetIsAbove ? desiredY < target.Y : desiredY > target.Y)
             {
-                desiredX = directionX > 0 ? gameState.JoinResponse.TargetX : gameState.IngenuityX;
+                desiredY += directionY * 10;
+                waypoints.Enqueue((desiredX, desiredY));
+
+                directionX *= -1;
+                if (targetIsToTheRight)
+                {
+                    desiredX = directionX > 0 ? target.X : gameState.IngenuityX;
+                }
+                else
+                {
+                    desiredX = directionX < 0 ? target.X : gameState.IngenuityX;
+                }
+                waypoints.Enqueue((desiredX, desiredY));
             }
-            else
-            {
-                desiredX = directionX < 0 ? gameState.JoinResponse.TargetX : gameState.IngenuityX;
-            }
-            waypoints.Enqueue((desiredX, desiredY));
         }
 
         return waypoints;
@@ -75,8 +78,8 @@ public class IngenuityFlyer
             return;
         }
 
-        int targetX = gameState.JoinResponse.TargetX;
-        int targetY = gameState.JoinResponse.TargetY;
+        int targetX = gameState.Targets.First().X;
+        int targetY = gameState.Targets.First().Y;
 
         int directionX = targetX > gameState.IngenuityX ? 1 : -1;
         int directionY = targetY > gameState.IngenuityY ? 1 : -1;

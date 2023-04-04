@@ -19,7 +19,7 @@ public class PerseveranceDriver
     {
         while (true)
         {
-            var direction = determineDirection(gameState.Orientation, gameState.Perseverance, gameState.Target);
+            var direction = determineDirection(gameState.Orientation, gameState.Perseverance, gameState.Targets.First());
             var response = await httpClient.GetAsync($"/game/moveperseverance?token={gameState.Token}&direction={direction}");
             if (response.IsSuccessStatusCode)
             {
@@ -28,6 +28,12 @@ public class PerseveranceDriver
                 {
                     logger.LogInformation("Insufficient battery.  Current battery level: {batteryLevel}", moveResult.BatteryLevel);
                     await Task.Delay(TimeSpan.FromSeconds(1));
+                }
+                if (moveResult.Message == "You made it to the target!")
+                {
+                    gameState.Targets.Dequeue();
+                    Console.WriteLine();
+                    Console.WriteLine($"You made it to a target, {gameState.Targets.Count} targets remain.");
                 }
 
                 gameState.Orientation = moveResult.Orientation;
@@ -47,10 +53,10 @@ public class PerseveranceDriver
         }
     }
 
-    private string determineDirection(string orientation, (int x, int y) perseverance, (int TargetX, int TargetY) target)
+    private string determineDirection(string orientation, (int x, int y) perseverance, Location target)
     {
-        var targetIsToTheRight = (target.TargetX > perseverance.x);
-        if (target.TargetY == perseverance.y)
+        var targetIsToTheRight = (target.X > perseverance.x);
+        if (target.Y == perseverance.y)
         {
             if (targetIsToTheRight)
             {
@@ -66,7 +72,7 @@ public class PerseveranceDriver
             }
             return "Left";
         }
-        var targetIsAbove = target.TargetY > perseverance.y;
+        var targetIsAbove = target.Y > perseverance.y;
         if (targetIsAbove)
         {
             if (orientation == "North")

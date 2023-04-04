@@ -20,7 +20,7 @@ public class GameState
         {
             joinResponse = value ?? throw new ArgumentNullException();
 
-            logger.LogInformation("Joined game: target at ({targetX},{targetY})", joinResponse.TargetX, joinResponse.TargetY);
+            logger.LogInformation("Joined game: first target at ({targetX},{targetY})", joinResponse.Targets.First().X, joinResponse.Targets.First().Y);
 
             IngenuityX = joinResponse.StartingX;
             IngenuityY = joinResponse.StartingY;
@@ -28,7 +28,7 @@ public class GameState
             Height = joinResponse.LowResolutionMap.Max(t => t.UpperRightY);
             Width = joinResponse.LowResolutionMap.Max(w => w.UpperRightX);
             Orientation = joinResponse.Orientation;
-            Target = (joinResponse.TargetX, joinResponse.TargetY);
+            Targets = new Queue<Location>(joinResponse.Targets);
         }
     }
 
@@ -38,7 +38,7 @@ public class GameState
     public int Height { get; private set; }
     public int Width { get; private set; }
     public string Orientation { get; set; }
-    public (int TargetX, int TargetY) Target { get; private set; }
+    public Queue<Location> Targets { get; private set; }
     public ConcurrentDictionary<(int, int), int> Map { get; } = new();
     public int PerseveranceBatteryLevel { get; internal set; }
     public (int X, int Y) Perseverance { get; internal set; }
