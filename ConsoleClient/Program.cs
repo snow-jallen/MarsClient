@@ -1,4 +1,30 @@
-﻿using System.Net.Http.Json;
+﻿using CommandLine;
+using Microsoft.Extensions.Logging;
+
+if (args.Any(a => a == "auto"))
+{
+    await Host.CreateDefaultBuilder(args)
+        .ConfigureLogging(config =>
+        {
+            config.AddFilter("Microsoft", LogLevel.Warning);
+        })
+        .ConfigureServices((_, services) =>
+        {
+            services.AddDbContext<Context>(options => options.UseSqlite("data source=database.db"));
+            services.AddHostedService<CoordinationService>();
+            services.AddSingleton<GameState>();
+            services.AddSingleton<IngenuityFlyer>();
+            services.AddSingleton<PerseveranceDriver>();
+            services.AddSingleton((_) =>
+            {
+                var result = Parser.Default.ParseArguments<StartInfo>(args);
+                return result.Value ?? throw new Exception("Invalid arguments");
+            });
+            services.AddSingleton((s) => new HttpClient { BaseAddress = new Uri(s.GetRequiredService<StartInfo>().ServerAddress) });
+        })
+        .RunConsoleAsync();
+    return;
+}
 
 Console.WriteLine("Welcome to the Mars Rover Console Client");
 Console.WriteLine("What server are you connecting to?");
@@ -125,7 +151,10 @@ async Task waitForGameToStartPlaying()
     {
         var statusResult = await httpClient.GetFromJsonAsync<StatusResult>($"/game/status?token={joinResponse.Token}");
         if (statusResult.status == "Playing")
+        {
             break;
+        }
+
         await Task.Delay(TimeSpan.FromSeconds(1));
     }
 }
